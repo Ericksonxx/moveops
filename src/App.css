@@ -602,3 +602,28 @@ textarea{ resize: vertical; min-height: 120px; }
 .footCopy{
   margin-top:18px;
 }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandLogo {
+  height: 28px;
+  width: auto;
+  display: block;
+}
+
+.footBrand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footLogo {
+  height: 22px;
+  width: auto;
+  display: block;
+  opacity: 0.95;
+}

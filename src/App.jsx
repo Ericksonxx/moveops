@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 import "./App.css";
+import logo from "./assets/moveops-logo.png";
+
 
 function Badge({ children }) {
   return <span className="badge">{children}</span>;
@@ -93,11 +95,12 @@ export default function App() {
       {/* NAV */}
       <header className="nav">
         <div className="container navInner">
-          <a className="brand" href="#top" aria-label="Home">
-            <span className="brandMark" aria-hidden="true" />
-            <span className="brandName">MoveOps</span>
-            <span className="brandTag">Spain rollout execution</span>
-          </a>
+<a className="brand" href="#top" aria-label="Home">
+  <img className="brandLogo" src={logo} alt="MOVE OPS. SERVICES" />
+  <span className="brandTag">Spain rollout execution</span>
+</a>
+
+
 
           <nav className="navLinks" aria-label="Primary">
             <a href="#services">What we do</a>
@@ -620,13 +623,13 @@ export default function App() {
         <footer className="footer">
           <div className="container footerInner">
             <div className="footLeft">
-              <div className="footBrand">
-                <span className="brandMark" aria-hidden="true" />
-                <div>
-                  <div className="footName">MoveOps</div>
-                  <div className="footSub">Spain rollout execution</div>
-                </div>
-              </div>
+<div className="footBrand">
+  <img className="footLogo" src={logo} alt="MOVE OPS. SERVICES" />
+  <div>
+    <div className="footSub">Spain rollout execution</div>
+  </div>
+</div>
+
               <div className="muted footCopy">
                 Pilot-first partner for store projects in Spain. <span className="sep">•</span> © {year}
               </div>
