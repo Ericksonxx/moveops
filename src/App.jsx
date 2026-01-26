@@ -81,7 +81,7 @@ export default function App() {
       return;
     }
 
-    const subject = encodeURIComponent("MoveOps — Pilot request (Spain)");
+    const subject = encodeURIComponent("MoveOps — Spain execution enquiry");
     const body = encodeURIComponent(
       `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nRole: ${form.role}\n\nMessage:\n${form.message}`
     );
@@ -132,14 +132,14 @@ export default function App() {
               </div>
 
               <h1 className="h1">
-                We execute your Spain store projects — starting with a small pilot.
+                 We execute in-store rollouts and exhibition builds in Spain — starting with a small pilot.
               </h1>
 
               <p className="sub">
-                International agencies use us when they need a reliable partner in Spain.
-                We plan the job, coordinate production and logistics, send install teams,
-                and deliver photo reports. Most partners start with <strong>1–5 stores</strong>,
-                then scale when the workflow is proven.
+                Agencies and brands use us as their local Spain partner for <strong>retail installs</strong> and <strong>trade-fair stands</strong>.
+                We plan the scope, coordinate production and logistics, manage on-site teams,
+                and deliver structured photo reports. Most partners start with a <strong>pilot</strong>,
+                then scale once the workflow is proven.
               </p>
 
               <div className="heroCtas">
@@ -259,15 +259,15 @@ export default function App() {
                 footer={<span className="muted">Scope • risks • store constraints • schedule</span>}
               >
                 <ul className="bullets">
-                  <li>Review artwork, materials and instructions</li>
-                  <li>Check store access and installation method</li>
-                  <li>Confirm dates and responsibilities</li>
+<li>Review artwork, specs and production requirements</li>
+<li>Confirm access, site constraints (stores or venues) and install method</li>
+<li>Lock dates, responsibilities and escalation path</li>
                 </ul>
               </Card>
 
               <Card
                 title="Coordinate production & delivery"
-                footer={<span className="muted">Print • build • QC • packing • store drops</span>}
+                footer={<span className="muted">Print • build • QC • packing • delivery</span>}
               >
                 <ul className="bullets">
                   <li>Make sure materials arrive install-ready</li>
@@ -304,7 +304,7 @@ export default function App() {
           <div className="container">
             <SectionHeader
               title="How it starts (Pilot → Scale)"
-              subtitle="This is the usual way agencies onboard a new Spain partner."
+             subtitle="How agencies and brands onboard a local Spain partner for retail rollouts and exhibitions."
             />
 
             <div className="timeline">
@@ -327,10 +327,10 @@ export default function App() {
               <div className="tlItem">
                 <div className="tlNum">02</div>
                 <div className="tlBody">
-                  <h3>Rollout (10–30+ stores)</h3>
+                  <h3>Scale (rollout or event build)</h3>
                   <p>
-                    We standardise the process: one schedule, one reporting format,
-                    and one escalation path. Less coordination for your team.
+                    We standardise delivery: one schedule, one reporting format and one escalation path.
+  Whether it’s 10–30 stores or a venue build, your team spends less time coordinating.
                   </p>
                   <div className="tags">
                     <Pill>One status</Pill>
@@ -343,7 +343,7 @@ export default function App() {
               <div className="tlItem">
                 <div className="tlNum">03</div>
                 <div className="tlBody">
-                  <h3>Nationwide (when needed)</h3>
+                  <h3>Ongoing coverage (when needed)</h3>
                   <p>
                     After successful rollouts, we can cover Spain end-to-end under NDA,
                     acting as your execution owner for the country.
@@ -385,7 +385,7 @@ export default function App() {
           <div className="container">
             <SectionHeader
               title="Examples (confidential)"
-              subtitle="We don’t publish client brands. These are typical scopes we deliver."
+              subtitle="We don’t publish client brands. These are typical scopes we deliver across retail and events."
             />
 
             <div className="grid3">
@@ -401,13 +401,13 @@ export default function App() {
               </Card>
 
               <Card
-                title="Rollout: display installations"
-                footer={<span className="muted">10–30 stores • staged schedule</span>}
+                title="Exhibition: stand build & on-site coordination"
+                footer={<span className="muted">Venue • build • setup • fix-ups</span>}
               >
                 <ul className="bullets">
-                  <li>Assemble and place display units</li>
-                  <li>Adjustments for store constraints</li>
-                  <li>One consolidated completion report</li>
+                  <li>Stand setup, branding and last-minute adjustments</li>
+                  <li>Single point of contact on-site</li>
+                  <li>Photo close-out for client reporting</li>
                 </ul>
               </Card>
 
@@ -446,6 +446,15 @@ export default function App() {
             />
 
             <div className="faq">
+              <FAQItem
+                q="Do you support trade fairs and exhibition stands?"
+                a={
+                  <p>
+                    Yes. We can coordinate production, logistics and on-site setup in Spain, including
+                    stand branding and last-minute fixes. We can also work white-label under NDA.
+                  </p>
+                }
+              />
               <FAQItem
                 q="Do you only take big rollouts?"
                 a={
@@ -499,7 +508,7 @@ export default function App() {
           <div className="container">
             <SectionHeader
               title="Contact"
-              subtitle="Tell us the store count and dates. We’ll reply with a clear pilot plan."
+              subtitle="Tell us your store rollout or event details. We’ll reply with a clear pilot plan."
             />
 
             <div className="contactGrid">
@@ -528,6 +537,7 @@ export default function App() {
                 <div className="miniBox">
                   <strong>Send this</strong>
                   <ul className="bullets">
+                    <li>Retail rollout or event/venue name</li>
                     <li>Store list (city + count)</li>
                     <li>What to install (window / POS / display)</li>
                     <li>Target dates</li>
@@ -592,7 +602,7 @@ export default function App() {
                     name="message"
                     value={form.message}
                     onChange={onChange}
-                    placeholder="Example: Pilot for 3 stores in Madrid + Barcelona. Window vinyl + POS refresh. Target dates: Jan 10–15. Need photo report."
+                    placeholder="Example: Retail pilot (3 stores, Madrid+Barcelona): window vinyl + POS refresh, dates, photo report. Or Event build: venue/city, stand size, required elements, build dates."
                     rows={6}
                     required
                   />
