@@ -704,6 +704,7 @@ async function onSubmit(e) {
           </div>
         </footer>
       </main>
+      <Analytics />
     </div>
   );
 }
