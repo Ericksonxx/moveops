@@ -1,33 +1,65 @@
+// App.jsx
 import { useMemo, useState } from "react";
 import "./App.css";
 import logo from "./assets/moveops-logo.png";
 
-
-function Badge({ children }) {
-  return <span className="badge">{children}</span>;
-}
-
-function Pill({ children }) {
-  return <span className="pill">{children}</span>;
-}
-
-function Card({ title, children, footer }) {
+/* ---------- Small UI ---------- */
+function LangToggle({ lang, onToggle }) {
   return (
-    <div className="card">
-      <div className="cardHd">
-        <h3>{title}</h3>
-      </div>
-      <div className="cardBd">{children}</div>
-      {footer ? <div className="cardFt">{footer}</div> : null}
+    <button className="langBtn" type="button" onClick={onToggle} aria-label="Change language">
+      <span className="langPill">{lang === "es" ? "ES" : "EN"}</span>
+      <span className="langArrow">↔</span>
+      <span className="langPill">{lang === "es" ? "EN" : "ES"}</span>
+    </button>
+  );
+}
+
+function SectionHeader({ kicker, title, subtitle }) {
+  return (
+    <div className="sh">
+      {kicker ? <div className="kicker">{kicker}</div> : null}
+      <h2 className="h2">{title}</h2>
+      {subtitle ? <p className="sub">{subtitle}</p> : null}
     </div>
   );
 }
 
-function SectionHeader({ title, subtitle }) {
+function ValueCard({ n, title, text }) {
   return (
-    <div className="sectionHd">
-      <h2>{title}</h2>
-      {subtitle ? <p>{subtitle}</p> : null}
+    <div className="vCard">
+      <div className="vN">{n}</div>
+      <div className="vBody">
+        <div className="vTitle">{title}</div>
+        <div className="vText">{text}</div>
+      </div>
+    </div>
+  );
+}
+
+function TimelineItem({ year, title, text }) {
+  return (
+    <div className="tItem">
+      <div className="tLeft">
+        <div className="tYear">{year}</div>
+      </div>
+      <div className="tRight">
+        <div className="tTitle">{title}</div>
+        <div className="tText">{text}</div>
+      </div>
+    </div>
+  );
+}
+
+function LocationCard({ city, desc, bullets }) {
+  return (
+    <div className="locCard">
+      <div className="locCity">{city}</div>
+      <div className="locDesc">{desc}</div>
+      <ul className="locList">
+        {bullets.map((b) => (
+          <li key={b}>{b}</li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -35,15 +67,10 @@ function SectionHeader({ title, subtitle }) {
 function FAQItem({ q, a }) {
   const [open, setOpen] = useState(false);
   return (
-    <button
-      className={`faqItem ${open ? "open" : ""}`}
-      onClick={() => setOpen((v) => !v)}
-      type="button"
-      aria-expanded={open}
-    >
+    <button className={`faqItem ${open ? "open" : ""}`} onClick={() => setOpen((v) => !v)} type="button">
       <div className="faqQ">
         <span>{q}</span>
-        <span className="faqIcon" aria-hidden="true">
+        <span className="faqPlus" aria-hidden="true">
           {open ? "–" : "+"}
         </span>
       </div>
@@ -54,513 +81,527 @@ function FAQItem({ q, a }) {
   );
 }
 
+/* ---------- Copy ES/EN ---------- */
+const i18n = {
+  es: {
+    nav: {
+      who: "Quiénes somos",
+      story: "Nuestra historia",
+      values: "Valores",
+      where: "Ubicaciones",
+      faq: "FAQ",
+      contact: "Contacto",
+    },
+    hero: {
+      kicker: "Ejecución de stands y retail en España",
+      h1: "Tu equipo local para montar stands de feria (y proyectos en tienda) en España.",
+      p: (
+        <>
+          MoveOps coordina <strong>producción</strong>, <strong>logística</strong> y{" "}
+          <strong>montaje</strong> con un responsable único y un cierre con{" "}
+          <strong>fotos + notas</strong>. Lo normal es empezar con un{" "}
+          <strong>piloto</strong> y escalar cuando el flujo está validado.
+        </>
+      ),
+      pills: ["Stands de feria", "Organizadores y expositores", "White-label / NDA", "Cobertura nacional"],
+      cta1: "Conseguir stand",
+      cta2: "Ver cómo trabajamos",
+      snapTitle: "Lo esencial (rápido)",
+      snap: [
+        ["Piloto", "1–3 stands / sedes"],
+        ["Plazo típico", "7–15 días"],
+        ["Reporte", "24–48h"],
+        ["Modelo", "Un único contacto"],
+      ],
+    },
+    who: {
+      kicker: "¿Quiénes somos?",
+      title: "Especialistas en ejecución: que el stand esté listo, a tiempo y sin sorpresas.",
+      subtitle:
+        "Trabajamos con organizadores de ferias/eventos y con empresas de cualquier sector que exponen en España. Centralizamos coordinación y dejamos evidencia de cierre (fotos + notas).",
+      bulletsTitle: "Qué resolvemos",
+      bullets: [
+        "Planificación y checklist (accesos, normativa del recinto, slots, riesgos)",
+        "Coordinación de producción/impresión cuando se necesita",
+        "Logística y entregas en el recinto (ventanas y condiciones)",
+        "Montaje, retoques y resolución de incidencias",
+        "Reporte final estructurado para tu equipo/cliente",
+      ],
+    },
+    story: {
+      kicker: "Nuestra historia",
+      title: "Piloto primero, luego escala (un sistema repetible).",
+      subtitle:
+        "No dependes de “probar suerte” en cada feria. Estandarizamos la ejecución para que tu equipo tenga un flujo predecible.",
+      items: [
+        {
+          year: "01",
+          title: "Piloto (1–3 stands)",
+          text: "Validamos tiempos, coordinación con el recinto, calidad y reporting. Detectamos mejoras para escalar.",
+        },
+        {
+          year: "02",
+          title: "Entrega de evento / feria",
+          text: "Un calendario, un responsable, un formato de reporte. Menos coordinación para tu equipo y menos fricción onsite.",
+        },
+        {
+          year: "03",
+          title: "Cobertura continua (si encaja)",
+          text: "Después de varias entregas, operamos de forma recurrente bajo NDA y, si lo necesitas, en white-label.",
+        },
+      ],
+    },
+    values: {
+      kicker: "Nuestros valores",
+      title: "Lo que se nota en cada montaje",
+      subtitle: "Una forma de trabajar pensada para organizadores y expositores: claridad, velocidad y control.",
+      items: [
+        { n: "01", title: "Compromiso", text: "Fechas claras, responsabilidades claras y seguimiento real." },
+        { n: "02", title: "Resolutividad", text: "Problemas onsite: se documentan y se resuelven con criterio." },
+        { n: "03", title: "Confianza", text: "Reporting consistente (fotos + notas) y comunicación directa." },
+        { n: "04", title: "Cercanía", text: "Un único punto de contacto. Menos cadenas y menos pérdida de contexto." },
+        { n: "05", title: "Equipo", text: "Coordinación de equipos locales y proveedores con control previo." },
+        { n: "06", title: "Sostenibilidad", text: "Preferencia por soluciones reutilizables y logística optimizada cuando aplica." },
+      ],
+    },
+    where: {
+      kicker: "Nuestras ubicaciones",
+      title: "Ejecución en España (y escalable por regiones)",
+      subtitle: "Podemos arrancar en una ciudad/recinto y escalar a cobertura nacional según necesidad.",
+      cards: [
+        {
+          city: "Madrid",
+          desc: "Soporte para IFEMA y recintos/eventos en la Comunidad de Madrid.",
+          bullets: ["Coordinación de entregas por slot", "Montaje y fix-ups", "Reporte 24–48h"],
+        },
+        {
+          city: "Barcelona",
+          desc: "Soporte para Fira Barcelona y eventos corporativos en Cataluña.",
+          bullets: ["Montaje de stand + gráfica", "Validación de accesos y normativa", "Cierre fotográfico"],
+        },
+        {
+          city: "España (multi-ciudad)",
+          desc: "Rollouts y ferias en varias ciudades con un flujo estándar.",
+          bullets: ["Un único reporting", "Un responsable de ejecución", "Escalado por fases"],
+        },
+      ],
+    },
+    faq: {
+      kicker: "FAQ",
+      title: "Preguntas frecuentes",
+      items: [
+        {
+          q: "¿Trabajáis con organizadores de ferias?",
+          a: <p>Sí. Podemos actuar como partner de ejecución para expositores, con coordinación onsite y reporte.</p>,
+        },
+        {
+          q: "¿Podéis gestionar producción/impresión?",
+          a: <p>Sí, cuando se requiere. Coordinamos fabricación y verificamos que el material llegue listo para montar.</p>,
+        },
+        { q: "¿Operáis en white-label y bajo NDA?", a: <p>Sí. No publicamos marcas ni proyectos.</p> },
+        { q: "¿Qué entregáis al final?", a: <p>Paquete de fotos + notas: estado final, incidencias y acciones realizadas.</p> },
+      ],
+    },
+    contact: {
+      kicker: "Contacto",
+      title: "¿Necesitas ayuda para gestionar tu stand en una feria?",
+      subtitle: "Rellena el formulario y te respondemos con viabilidad, timing y un plan de piloto.",
+      form: {
+        name: "Nombre",
+        email: "Email *",
+        company: "Empresa",
+        role: "Soy…",
+        roles: ["Organizador de feria/evento", "Empresa expositora", "Agencia", "Otro"],
+        message: "Mensaje *",
+        send: "Enviar",
+        ok: "Abriendo tu cliente de email…",
+        err: "Añade tu email y un mensaje breve.",
+        fine: "White-label / NDA disponible. No publicamos proyectos.",
+      },
+      side: {
+        title: "Incluye (si puedes)",
+        bullets: ["Feria/recinto y ciudad", "Fechas de montaje/desmontaje", "Tamaño del stand y elementos", "Qué está producido vs por producir", "Restricciones de acceso/horarios"],
+        email: "hello@moveops.services",
+      },
+    },
+    footer: "MoveOps — Stands y ejecución en España",
+  },
+
+  en: {
+    nav: {
+      who: "About",
+      story: "How it works",
+      values: "Values",
+      where: "Locations",
+      faq: "FAQ",
+      contact: "Contact",
+    },
+    hero: {
+      kicker: "Trade-fair stands & execution in Spain",
+      h1: "Your local team to build trade-fair stands (and retail installs) in Spain.",
+      p: (
+        <>
+          MoveOps coordinates <strong>production</strong>, <strong>logistics</strong> and{" "}
+          <strong>on-site build</strong> with one accountable owner and a{" "}
+          <strong>photo + notes</strong> close-out. Most partners start with a{" "}
+          <strong>pilot</strong> and scale once the workflow is proven.
+        </>
+      ),
+      pills: ["Trade-fair stands", "Organizers & exhibitors", "White-label / NDA", "Nationwide"],
+      cta1: "Get a stand plan",
+      cta2: "See the process",
+      snapTitle: "Quick snapshot",
+      snap: [
+        ["Pilot", "1–3 stands / sites"],
+        ["Typical lead time", "7–15 days"],
+        ["Reporting", "24–48h"],
+        ["Model", "One point of contact"],
+      ],
+    },
+    who: {
+      kicker: "About us",
+      title: "Execution specialists: ready on time, without surprises.",
+      subtitle:
+        "We work with event organizers and exhibiting companies across sectors. We centralize coordination and provide evidence-based close-out (photos + notes).",
+      bulletsTitle: "What we handle",
+      bullets: [
+        "Planning & checklist (access, venue rules, time slots, risks)",
+        "Production/printing coordination when needed",
+        "Venue deliveries (slots and requirements)",
+        "Build, finishing and issue handling",
+        "Structured close-out report for your team/client",
+      ],
+    },
+    story: {
+      kicker: "How it works",
+      title: "Pilot first, then scale (repeatable system).",
+      subtitle:
+        "No “guesswork” every time. We standardize execution so your team gets predictable delivery.",
+      items: [
+        { year: "01", title: "Pilot (1–3 stands)", text: "Validate timing, venue coordination, quality and reporting. Capture improvements for scaling." },
+        { year: "02", title: "Event delivery", text: "One schedule, one owner, one reporting format. Less coordination for your team and less onsite friction." },
+        { year: "03", title: "Ongoing coverage (if it fits)", text: "After successful deliveries, we can operate under NDA and, if needed, white-label." },
+      ],
+    },
+    values: {
+      kicker: "Values",
+      title: "What shows up in every build",
+      subtitle: "Built for organizers and exhibitors: clarity, speed and control.",
+      items: [
+        { n: "01", title: "Commitment", text: "Clear dates, clear ownership, real follow-through." },
+        { n: "02", title: "Problem-solving", text: "Onsite issues: documented and resolved pragmatically." },
+        { n: "03", title: "Trust", text: "Consistent reporting (photos + notes) and direct communication." },
+        { n: "04", title: "Closeness", text: "One point of contact. Fewer chains, less context loss." },
+        { n: "05", title: "Team", text: "Coordination of local crews and vendors with pre-checks." },
+        { n: "06", title: "Sustainability", text: "Preference for reusable solutions and optimized logistics when applicable." },
+      ],
+    },
+    where: {
+      kicker: "Locations",
+      title: "Execution across Spain (scalable by region)",
+      subtitle: "Start in one city/venue and scale to nationwide coverage when needed.",
+      cards: [
+        { city: "Madrid", desc: "Support for IFEMA and Madrid-region venues.", bullets: ["Time-slot deliveries", "Build & fix-ups", "24–48h close-out"] },
+        { city: "Barcelona", desc: "Support for Fira Barcelona and corporate events in Catalonia.", bullets: ["Stand build + graphics", "Access & rules validation", "Photo close-out"] },
+        { city: "Spain (multi-city)", desc: "Multi-city fairs/rollouts with a standard workflow.", bullets: ["One reporting format", "One execution owner", "Phase-based scaling"] },
+      ],
+    },
+    faq: {
+      kicker: "FAQ",
+      title: "Frequently asked",
+      items: [
+        { q: "Do you work with event organizers?", a: <p>Yes. We can act as an execution partner for exhibitors, including onsite coordination and reporting.</p> },
+        { q: "Can you manage production/printing?", a: <p>Yes when required. We coordinate fabrication and ensure it arrives install-ready.</p> },
+        { q: "White-label and NDA?", a: <p>Yes. We don’t publish brands or projects.</p> },
+        { q: "What do you deliver after the build?", a: <p>Photo pack + notes: final status, issues, and actions taken.</p> },
+      ],
+    },
+    contact: {
+      kicker: "Contact",
+      title: "Need help managing your stand for a fair?",
+      subtitle: "Send details. We reply with feasibility, timing and a pilot plan.",
+      form: {
+        name: "Name",
+        email: "Email *",
+        company: "Company",
+        role: "I am…",
+        roles: ["Organizer", "Exhibiting company", "Agency", "Other"],
+        message: "Message *",
+        send: "Send",
+        ok: "Opening your email client…",
+        err: "Please add your email and a short message.",
+        fine: "White-label / NDA available. We don’t publish projects.",
+      },
+      side: {
+        title: "Include (if you can)",
+        bullets: ["Fair/venue and city", "Build/dismantle dates", "Stand size and elements", "Produced vs to be produced", "Access/time slot constraints"],
+        email: "hello@moveops.services",
+      },
+    },
+    footer: "MoveOps — Trade fairs & execution in Spain",
+  },
+};
+
 export default function App() {
   const year = useMemo(() => new Date().getFullYear(), []);
+  const [lang, setLang] = useState("es");
+  const t = i18n[lang];
+
   const [form, setForm] = useState({
     name: "",
     email: "",
     company: "",
-    role: "Agency / Operations",
+    role: t.contact.form.roles[0],
     message: "",
   });
   const [status, setStatus] = useState({ type: "idle", msg: "" });
+
+  function toggleLang() {
+    const next = lang === "es" ? "en" : "es";
+    setLang(next);
+    setForm((f) => ({ ...f, role: i18n[next].contact.form.roles[0] }));
+    setStatus({ type: "idle", msg: "" });
+  }
 
   function onChange(e) {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));
   }
 
-  function onSubmit(e) {
-    e.preventDefault();
+async function onSubmit(e) {
+  e.preventDefault();
+  setStatus({ type: "idle", msg: "" });
 
-    if (!form.email || !form.message) {
-      setStatus({
-        type: "error",
-        msg: "Please add your email and a short message.",
-      });
-      return;
-    }
-
-    const subject = encodeURIComponent("MoveOps — Spain execution enquiry");
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nCompany: ${form.company}\nRole: ${form.role}\n\nMessage:\n${form.message}`
-    );
-
-    setStatus({ type: "success", msg: "Opening your email client…" });
-    window.location.href = `mailto:hello@moveops.services?subject=${subject}&body=${body}`;
+  if (!form.email || !form.message) {
+    setStatus({ type: "error", msg: lang === "es" ? "Añade tu email y un mensaje." : "Add your email and a message." });
+    return;
   }
+
+  try {
+    setStatus({ type: "success", msg: lang === "es" ? "Enviando…" : "Sending…" });
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ...form, lang }),
+    });
+
+    if (!res.ok) throw new Error("Request failed");
+
+    setStatus({ type: "success", msg: lang === "es" ? "Mensaje enviado. Te responderemos pronto." : "Sent. We’ll reply soon." });
+    setForm((f) => ({ ...f, message: "" }));
+  } catch {
+    setStatus({ type: "error", msg: lang === "es" ? "No se pudo enviar. Prueba de nuevo o escribe a hello@moveops.services" : "Send failed. Try again or email hello@moveops.services" });
+  }
+}
+
 
   return (
     <div className="page">
       {/* NAV */}
       <header className="nav">
         <div className="container navInner">
-<a className="brand" href="#top" aria-label="Home">
-  <img className="brandLogo" src={logo} alt="MOVE OPS. SERVICES" />
-  <span className="brandTag">Spain rollout execution</span>
-</a>
-
-
+          <a className="brand" href="#top" aria-label="Home">
+            <img className="brandLogo" src={logo} alt="MOVE OPS. SERVICES" />
+          </a>
 
           <nav className="navLinks" aria-label="Primary">
-            <a href="#services">What we do</a>
-            <a href="#approach">How it starts</a>
-            <a href="#work">Examples</a>
-            <a href="#faq">FAQ</a>
-            <a className="btn btnSmall" href="#contact">
-              Contact
+            <a href="#who">{t.nav.who}</a>
+            <a href="#story">{t.nav.story}</a>
+            <a href="#values">{t.nav.values}</a>
+            <a href="#where">{t.nav.where}</a>
+            <a href="#faq">{t.nav.faq}</a>
+            <a className="navCta" href="#contact">
+              {t.nav.contact}
             </a>
+            <LangToggle lang={lang} onToggle={toggleLang} />
           </nav>
         </div>
       </header>
 
       <main id="top">
-        {/* HERO */}
+        {/* HERO (similar vibe: big title + visual panel + quick stats) */}
         <section className="hero">
           <div className="container heroGrid">
-            <div>
-              <div className="kicker">
-                <Badge>Spain-based</Badge>
-                <span className="kickerDot" aria-hidden="true">
-                  •
-                </span>
-                <Badge>White-label</Badge>
-                <span className="kickerDot" aria-hidden="true">
-                  •
-                </span>
-                <Badge>Pilot first</Badge>
+            <div className="heroLeft">
+              <div className="heroKicker">{t.hero.kicker}</div>
+              <h1 className="h1">{t.hero.h1}</h1>
+              <p className="p">{t.hero.p}</p>
+
+              <div className="pillRow">
+                {t.hero.pills.map((x) => (
+                  <span className="pill" key={x}>
+                    {x}
+                  </span>
+                ))}
               </div>
 
-              <h1 className="h1">
-                 We execute in-store rollouts and exhibition builds in Spain — starting with a small pilot.
-              </h1>
-
-              <p className="sub">
-                Agencies and brands use us as their local Spain partner for <strong>retail installs</strong> and <strong>trade-fair stands</strong>.
-                We plan the scope, coordinate production and logistics, manage on-site teams,
-                and deliver structured photo reports. Most partners start with a <strong>pilot</strong>,
-                then scale once the workflow is proven.
-              </p>
-
-              <div className="heroCtas">
+              <div className="ctaRow">
                 <a className="btn" href="#contact">
-                  Start a pilot
+                  {t.hero.cta1}
                 </a>
-                <a className="btn btnGhost" href="#approach">
-                  See the process
+                <a className="btn btnGhost" href="#story">
+                  {t.hero.cta2}
                 </a>
               </div>
-
-              <div className="heroMeta">
-                <Pill>One point of contact</Pill>
-                <Pill>Fast replies (English)</Pill>
-                <Pill>Photos + notes</Pill>
-                <Pill>Issues fixed</Pill>
-              </div>
-
-              <div className="micro">
-                <strong>Typical path:</strong> Pilot (1–5) → Rollout (10–30) → Nationwide (if needed).
-              </div>
             </div>
 
-            <div className="heroPanel" role="img" aria-label="Pilot to rollout dashboard mock">
-              <div className="panelTop">
-                <div className="panelTitle">Pilot plan (example)</div>
-                <div className="panelChips">
-                  <span className="chip">Plan</span>
-                  <span className="chip">Execute</span>
-                  <span className="chip">Report</span>
+            <div className="heroRight">
+              <div className="snap">
+                <div className="snapHd">{t.hero.snapTitle}</div>
+                <div className="snapGrid">
+                  {t.hero.snap.map(([k, v]) => (
+                    <div className="snapCell" key={k}>
+                      <div className="snapV">{v}</div>
+                      <div className="snapK">{k}</div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="snapHint">
+                  {lang === "es"
+                    ? "Ideal para organizadores que necesitan ejecución fiable y expositores que no quieren coordinar varios proveedores."
+                    : "Ideal for organizers needing reliable execution and exhibitors who don’t want to manage multiple vendors."}
                 </div>
               </div>
 
-              <div className="panelGrid">
-                <div className="metric">
-                  <div className="metricLabel">Pilot stores</div>
-                  <div className="metricValue">1–5</div>
+              <div className="heroVisual" aria-hidden="true">
+                <div className="visBox">
+                  <div className="visTitle">{lang === "es" ? "De brief a stand listo" : "From brief to ready stand"}</div>
+                  <div className="visSteps">
+                    <div className="visStep">
+                      <span className="dot" /> {lang === "es" ? "Brief + requisitos del recinto" : "Brief + venue requirements"}
+                    </div>
+                    <div className="visStep">
+                      <span className="dot" /> {lang === "es" ? "Producción / logística" : "Production / logistics"}
+                    </div>
+                    <div className="visStep">
+                      <span className="dot" /> {lang === "es" ? "Montaje + retoques" : "Build + fix-ups"}
+                    </div>
+                    <div className="visStep">
+                      <span className="dot" /> {lang === "es" ? "Fotos + cierre" : "Photos + close-out"}
+                    </div>
+                  </div>
                 </div>
-                <div className="metric">
-                  <div className="metricLabel">Typical lead time</div>
-                  <div className="metricValue">7–15 days</div>
-                </div>
-                <div className="metric">
-                  <div className="metricLabel">Reporting</div>
-                  <div className="metricValue">24–48h</div>
-                </div>
-                <div className="metric">
-                  <div className="metricLabel">Working model</div>
-                  <div className="metricValue">White-label</div>
-                </div>
-              </div>
-
-              <div className="panelList">
-                <div className="listRow">
-                  <span className="dot ok" /> Confirm scope + store list
-                  <span className="right">Day 0</span>
-                </div>
-                <div className="listRow">
-                  <span className="dot ok" /> Check materials + access
-                  <span className="right">Day 1–2</span>
-                </div>
-                <div className="listRow">
-                  <span className="dot ok" /> Execute installs
-                  <span className="right">Day 3–10</span>
-                </div>
-                <div className="listRow">
-                  <span className="dot ok" /> Fix issues (if any)
-                  <span className="right">Same week</span>
-                </div>
-                <div className="listRow">
-                  <span className="dot ok" /> Photo report delivered
-                  <span className="right">24–48h</span>
-                </div>
+                <div className="visAccent" />
               </div>
             </div>
           </div>
         </section>
 
-        {/* TRUST STRIP */}
-        <section className="strip">
-          <div className="container stripInner">
-            <div className="stripItem">
-              <div className="stripNum">1</div>
-              <div className="stripTxt">
-                <strong>Start small</strong>
-                <div>Pilot first to prove quality and workflow.</div>
-              </div>
-            </div>
-            <div className="stripItem">
-              <div className="stripNum">2</div>
-              <div className="stripTxt">
-                <strong>One owner for Spain</strong>
-                <div>One person accountable for delivery and reporting.</div>
-              </div>
-            </div>
-            <div className="stripItem">
-              <div className="stripNum">3</div>
-              <div className="stripTxt">
-                <strong>Clear reporting</strong>
-                <div>Photos + notes per store, delivered fast.</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SERVICES */}
-        <section id="services" className="section">
+        {/* WHO */}
+        <section id="who" className="section">
           <div className="container">
-            <SectionHeader
-              title="What we do"
-              subtitle="We execute store projects in Spain — pilots, partial rollouts or nationwide coverage."
-            />
-
-            <div className="grid3">
-              <Card
-                title="Plan the job"
-                footer={<span className="muted">Scope • risks • store constraints • schedule</span>}
-              >
-                <ul className="bullets">
-<li>Review artwork, specs and production requirements</li>
-<li>Confirm access, site constraints (stores or venues) and install method</li>
-<li>Lock dates, responsibilities and escalation path</li>
+            <SectionHeader kicker={t.who.kicker} title={t.who.title} subtitle={t.who.subtitle} />
+            <div className="whoGrid">
+              <div className="whoCard">
+                <div className="whoCardTitle">{t.who.bulletsTitle}</div>
+                <ul className="ul">
+                  {t.who.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
                 </ul>
-              </Card>
-
-              <Card
-                title="Coordinate production & delivery"
-                footer={<span className="muted">Print • build • QC • packing • delivery</span>}
-              >
-                <ul className="bullets">
-                  <li>Make sure materials arrive install-ready</li>
-                  <li>Coordinate deliveries per store type</li>
-                  <li>Avoid on-site surprises (missing parts, wrong sizes)</li>
-                </ul>
-              </Card>
-
-              <Card
-                title="Install + photo report"
-                footer={<span className="muted">White-label teams • fixes • reporting</span>}
-              >
-                <ul className="bullets">
-                  <li>Install / remove / refresh campaigns</li>
-                  <li>Resolve issues on site where possible</li>
-                  <li>Photo packs + notes within 24–48h</li>
-                </ul>
-              </Card>
-            </div>
-
-            <div className="callout">
-              <div>
-                <strong>Want to test first?</strong> Send a store list and scope — we’ll propose a pilot plan.
               </div>
-              <a className="btn btnSmall" href="#contact">
-                Request a pilot plan
-              </a>
+
+              <div className="whoAside">
+                <div className="asideBox">
+                  <div className="asideStrong">{lang === "es" ? "Modelo de trabajo" : "Working model"}</div>
+                  <div className="asideText">
+                    {lang === "es"
+                      ? "White-label y NDA: operamos como tu equipo local en España, sin publicar marcas ni proyectos."
+                      : "White-label and NDA: we operate as your Spain team without publishing brands or projects."}
+                  </div>
+                </div>
+                <div className="asideBox">
+                  <div className="asideStrong">{lang === "es" ? "Cómo empezamos" : "How we start"}</div>
+                  <div className="asideText">
+                    {lang === "es"
+                      ? "Piloto (1–3). Si encaja, escalamos a eventos recurrentes o multi-ciudad."
+                      : "Pilot (1–3). If it fits, we scale to recurring events or multi-city delivery."}
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* APPROACH */}
-        <section id="approach" className="section sectionAlt">
+        {/* STORY / TIMELINE */}
+        <section id="story" className="section sectionAlt">
           <div className="container">
-            <SectionHeader
-              title="How it starts (Pilot → Scale)"
-             subtitle="How agencies and brands onboard a local Spain partner for retail rollouts and exhibitions."
-            />
-
+            <SectionHeader kicker={t.story.kicker} title={t.story.title} subtitle={t.story.subtitle} />
             <div className="timeline">
-              <div className="tlItem">
-                <div className="tlNum">01</div>
-                <div className="tlBody">
-                  <h3>Pilot (1–5 stores)</h3>
-                  <p>
-                    We run a small set of stores to prove quality, speed and reporting.
-                    You get photos, notes, and a list of improvements for scaling.
-                  </p>
-                  <div className="tags">
-                    <Pill>Fast setup</Pill>
-                    <Pill>Clear proof</Pill>
-                    <Pill>Low risk</Pill>
-                  </div>
-                </div>
-              </div>
-
-              <div className="tlItem">
-                <div className="tlNum">02</div>
-                <div className="tlBody">
-                  <h3>Scale (rollout or event build)</h3>
-                  <p>
-                    We standardise delivery: one schedule, one reporting format and one escalation path.
-  Whether it’s 10–30 stores or a venue build, your team spends less time coordinating.
-                  </p>
-                  <div className="tags">
-                    <Pill>One status</Pill>
-                    <Pill>Consistent QA</Pill>
-                    <Pill>Issue handling</Pill>
-                  </div>
-                </div>
-              </div>
-
-              <div className="tlItem">
-                <div className="tlNum">03</div>
-                <div className="tlBody">
-                  <h3>Ongoing coverage (when needed)</h3>
-                  <p>
-                    After successful rollouts, we can cover Spain end-to-end under NDA,
-                    acting as your execution owner for the country.
-                  </p>
-                  <div className="tags">
-                    <Pill>Nationwide</Pill>
-                    <Pill>White-label</Pill>
-                    <Pill>NDA-ready</Pill>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="split">
-              <div className="splitBox">
-                <h3>What you get</h3>
-                <ul className="bullets">
-                  <li>One contact for Spain</li>
-                  <li>One reporting format across stores</li>
-                  <li>Less time chasing suppliers</li>
-                  <li>Clear close-out per store</li>
-                </ul>
-              </div>
-              <div className="splitBox">
-                <h3>What we take responsibility for</h3>
-                <ul className="bullets">
-                  <li>Planning, constraints and access</li>
-                  <li>On-site delivery and issue resolution</li>
-                  <li>Quality checks and compliance</li>
-                  <li>Photo reports and final notes</li>
-                </ul>
-              </div>
+              {t.story.items.map((it) => (
+                <TimelineItem key={it.year} year={it.year} title={it.title} text={it.text} />
+              ))}
             </div>
           </div>
         </section>
 
-        {/* WORK */}
-        <section id="work" className="section">
+        {/* VALUES */}
+        <section id="values" className="section">
           <div className="container">
-            <SectionHeader
-              title="Examples (confidential)"
-              subtitle="We don’t publish client brands. These are typical scopes we deliver across retail and events."
-            />
-
-            <div className="grid3">
-              <Card
-                title="Pilot: window + POS refresh"
-                footer={<span className="muted">1–5 stores • photos + close-out</span>}
-              >
-                <ul className="bullets">
-                  <li>Window vinyls, posters, shelf messaging</li>
-                  <li>Remove previous campaign</li>
-                  <li>Photo report per store</li>
-                </ul>
-              </Card>
-
-              <Card
-                title="Exhibition: stand build & on-site coordination"
-                footer={<span className="muted">Venue • build • setup • fix-ups</span>}
-              >
-                <ul className="bullets">
-                  <li>Stand setup, branding and last-minute adjustments</li>
-                  <li>Single point of contact on-site</li>
-                  <li>Photo close-out for client reporting</li>
-                </ul>
-              </Card>
-
-              <Card
-                title="Ongoing: maintenance and replacements"
-                footer={<span className="muted">Multi-city • repeat visits</span>}
-              >
-                <ul className="bullets">
-                  <li>Replace damaged items and refresh POS</li>
-                  <li>Store-by-store fixes</li>
-                  <li>Weekly status (if required)</li>
-                </ul>
-              </Card>
+            <SectionHeader kicker={t.values.kicker} title={t.values.title} subtitle={t.values.subtitle} />
+            <div className="valuesGrid">
+              {t.values.items.map((x) => (
+                <ValueCard key={x.n} n={x.n} title={x.title} text={x.text} />
+              ))}
             </div>
+          </div>
+        </section>
 
-            <div className="ctaBar">
-              <div>
-                <strong>Need a quick Spain pilot?</strong>
-                <div className="muted">
-                  Send store count, locations and dates. We’ll reply with a simple plan.
-                </div>
-              </div>
-              <a className="btn" href="#contact">
-                Request feasibility
-              </a>
+        {/* WHERE */}
+        <section id="where" className="section sectionAlt">
+          <div className="container">
+            <SectionHeader kicker={t.where.kicker} title={t.where.title} subtitle={t.where.subtitle} />
+            <div className="locGrid">
+              {t.where.cards.map((c) => (
+                <LocationCard key={c.city} city={c.city} desc={c.desc} bullets={c.bullets} />
+              ))}
             </div>
           </div>
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="section sectionAlt">
+        <section id="faq" className="section">
           <div className="container">
-            <SectionHeader
-              title="FAQ"
-              subtitle="Straight answers to common pilot questions."
-            />
-
+            <SectionHeader kicker={t.faq.kicker} title={t.faq.title} />
             <div className="faq">
-              <FAQItem
-                q="Do you support trade fairs and exhibition stands?"
-                a={
-                  <p>
-                    Yes. We can coordinate production, logistics and on-site setup in Spain, including
-                    stand branding and last-minute fixes. We can also work white-label under NDA.
-                  </p>
-                }
-              />
-              <FAQItem
-                q="Do you only take big rollouts?"
-                a={
-                  <p>
-                    No. Most partnerships start with a pilot (1–5 stores). If the pilot is
-                    successful, we scale to bigger rollouts.
-                  </p>
-                }
-              />
-              <FAQItem
-                q="Can you work white-label and under NDA?"
-                a={
-                  <p>
-                    Yes. We can work white-label and under NDA. We do not publish brand names
-                    or store images publicly.
-                  </p>
-                }
-              />
-              <FAQItem
-                q="Do you cover all of Spain?"
-                a={
-                  <p>
-                    Yes. We can start with one city/region for the pilot, then expand nationwide.
-                  </p>
-                }
-              />
-              <FAQItem
-                q="What exactly do you deliver after installs?"
-                a={
-                  <p>
-                    A structured photo pack per store plus notes: what was installed, any issues,
-                    and what was fixed or scheduled.
-                  </p>
-                }
-              />
-              <FAQItem
-                q="Do you also manage printing/production?"
-                a={
-                  <p>
-                    Yes, when needed. We coordinate printing/fabrication and make sure materials
-                    arrive ready to install.
-                  </p>
-                }
-              />
+              {t.faq.items.map((it) => (
+                <FAQItem key={it.q} q={it.q} a={it.a} />
+              ))}
             </div>
           </div>
         </section>
 
         {/* CONTACT */}
-        <section id="contact" className="section">
+        <section id="contact" className="section sectionAlt">
           <div className="container">
-            <SectionHeader
-              title="Contact"
-              subtitle="Tell us your store rollout or event details. We’ll reply with a clear pilot plan."
-            />
+            <SectionHeader kicker={t.contact.kicker} title={t.contact.title} subtitle={t.contact.subtitle} />
 
             <div className="contactGrid">
-              <div className="contactCard">
-                <h3>What we need from you</h3>
-                <p className="muted">
-                  If you can, include store locations and a short scope. We’ll respond with
-                  feasibility, timing and next steps.
-                </p>
-
-                <div className="contactList">
-                  <div className="contactRow">
-                    <span className="contactKey">Email</span>
-                    <span className="contactVal">hello@moveops.services</span>
-                  </div>
-                  <div className="contactRow">
-                    <span className="contactKey">Location</span>
-                    <span className="contactVal">Spain (nationwide)</span>
-                  </div>
-                  <div className="contactRow">
-                    <span className="contactKey">Model</span>
-                    <span className="contactVal">White-label • NDA-ready</span>
-                  </div>
-                </div>
-
-                <div className="miniBox">
-                  <strong>Send this</strong>
-                  <ul className="bullets">
-                    <li>Retail rollout or event/venue name</li>
-                    <li>Store list (city + count)</li>
-                    <li>What to install (window / POS / display)</li>
-                    <li>Target dates</li>
-                    <li>Any access constraints</li>
+              <div className="contactSide">
+                <div className="sideCard">
+                  <div className="sideTitle">{t.contact.side.title}</div>
+                  <ul className="ul">
+                    {t.contact.side.bullets.map((b) => (
+                      <li key={b}>{b}</li>
+                    ))}
                   </ul>
+                  <div className="sideEmail">
+                    <div className="sideLabel">Email</div>
+                    <div className="sideValue">{t.contact.side.email}</div>
+                  </div>
                 </div>
               </div>
 
               <form className="form" onSubmit={onSubmit}>
                 <div className="row2">
                   <label className="field">
-                    <span>Name</span>
-                    <input
-                      name="name"
-                      value={form.name}
-                      onChange={onChange}
-                      placeholder="Your name"
-                      autoComplete="name"
-                    />
+                    <span>{t.contact.form.name}</span>
+                    <input name="name" value={form.name} onChange={onChange} placeholder={t.contact.form.name} autoComplete="name" />
                   </label>
-
                   <label className="field">
-                    <span>Email *</span>
+                    <span>{t.contact.form.email}</span>
                     <input
                       name="email"
                       value={form.email}
@@ -574,56 +615,46 @@ export default function App() {
 
                 <div className="row2">
                   <label className="field">
-                    <span>Company</span>
-                    <input
-                      name="company"
-                      value={form.company}
-                      onChange={onChange}
-                      placeholder="Agency / Brand"
-                      autoComplete="organization"
-                    />
+                    <span>{t.contact.form.company}</span>
+                    <input name="company" value={form.company} onChange={onChange} placeholder={t.contact.form.company} autoComplete="organization" />
                   </label>
-
                   <label className="field">
-                    <span>Role</span>
+                    <span>{t.contact.form.role}</span>
                     <select name="role" value={form.role} onChange={onChange}>
-                      <option>Agency / Operations</option>
-                      <option>Production / Procurement</option>
-                      <option>Project Management</option>
-                      <option>Brand / Retail</option>
-                      <option>Other</option>
+                      {t.contact.form.roles.map((r) => (
+                        <option key={r}>{r}</option>
+                      ))}
                     </select>
                   </label>
                 </div>
 
                 <label className="field">
-                  <span>Message *</span>
+                  <span>{t.contact.form.message}</span>
                   <textarea
                     name="message"
                     value={form.message}
                     onChange={onChange}
-                    placeholder="Example: Retail pilot (3 stores, Madrid+Barcelona): window vinyl + POS refresh, dates, photo report. Or Event build: venue/city, stand size, required elements, build dates."
-                    rows={6}
+                    rows={7}
                     required
+                    placeholder={
+                      lang === "es"
+                        ? "Ejemplo: Feria/recinto, ciudad. Stand 6x3. Montaje día X, desmontaje Y. Elementos (gráfica, mobiliario, iluminación). ¿Podéis coordinar entrega y montaje?"
+                        : "Example: Venue/city. 6x3 stand. Build date X, dismantle Y. Elements (graphics, furniture, lighting). Can you coordinate delivery and build?"
+                    }
                   />
                 </label>
 
                 <button className="btn" type="submit">
-                  Send
+                  {t.contact.form.send}
                 </button>
 
                 {status.type !== "idle" ? (
-                  <div
-                    className={`formStatus ${status.type === "error" ? "err" : "ok"}`}
-                    role="status"
-                  >
+                  <div className={`status ${status.type === "error" ? "err" : "ok"}`} role="status">
                     {status.msg}
                   </div>
                 ) : null}
 
-                <p className="fine">
-                  We can work under NDA and operate white-label. We don’t publish client brands publicly.
-                </p>
+                <div className="fine">{t.contact.form.fine}</div>
               </form>
             </div>
           </div>
@@ -631,24 +662,18 @@ export default function App() {
 
         {/* FOOTER */}
         <footer className="footer">
-          <div className="container footerInner">
+          <div className="container footInner">
             <div className="footLeft">
-<div className="footBrand">
-  <img className="footLogo" src={logo} alt="MOVE OPS. SERVICES" />
-  <div>
-    <div className="footSub">Spain rollout execution</div>
-  </div>
-</div>
-
-              <div className="muted footCopy">
-                Pilot-first partner for store projects in Spain. <span className="sep">•</span> © {year}
+              <img className="footLogo" src={logo} alt="MOVE OPS. SERVICES" />
+              <div className="footText">
+                <div className="footTitle">{t.footer}</div>
+                <div className="footSub">© {year}</div>
               </div>
             </div>
-
-            <div className="footRight">
-              <a href="#services">What we do</a>
-              <a href="#approach">How it starts</a>
-              <a href="#contact">Contact</a>
+            <div className="footLinks">
+              <a href="#who">{t.nav.who}</a>
+              <a href="#where">{t.nav.where}</a>
+              <a href="#contact">{t.nav.contact}</a>
             </div>
           </div>
         </footer>
