@@ -2,6 +2,7 @@
 import { useMemo, useState } from "react";
 import "./App.css";
 import logo from "./assets/moveops-logo.png";
+import { Analytics } from "@vercel/analytics/next"
 
 /* ---------- Small UI ---------- */
 function LangToggle({ lang, onToggle }) {
