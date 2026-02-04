@@ -20,7 +20,7 @@ export default async function handler(req, res) {
 
   try {
     await resend.emails.send({
-      from: "MoveOps <no-reply@moveops.services>", // necesitas dominio verificado en Resend
+      from: "MoveOps <no-reply@moveops.services>", 
       to: ["hello@moveops.services"],
       reply_to: email,
       subject,
