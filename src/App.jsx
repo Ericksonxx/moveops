@@ -82,31 +82,32 @@ function FAQItem({ q, a }) {
 }
 
 /* ---------- Copy ES/EN ---------- */
+
 const i18n = {
   es: {
     nav: {
       who: "Quiénes somos",
-      story: "Nuestra historia",
+      story: "Cómo trabajamos",
       values: "Valores",
-      where: "Ubicaciones",
+      where: "Cobertura",
       faq: "FAQ",
       contact: "Contacto",
     },
     hero: {
-      kicker: "Ejecución de stands y retail en España",
-      h1: "Tu equipo local para montar stands de feria (y proyectos en tienda) en España.",
+      kicker: "Ejecución en España • Stands • Branding • Retail",
+      h1: "Ejecución real en España para stands, branding y tiendas.",
       p: (
         <>
-          MoveOps coordina <strong>producción</strong>, <strong>logística</strong> y{" "}
-          <strong>montaje</strong> con un responsable único y un cierre con{" "}
-          <strong>fotos + notas</strong>. Lo normal es empezar con un{" "}
-          <strong>piloto</strong> y escalar cuando el flujo está validado.
+          Planificamos, coordinamos y montamos. <strong>Un responsable</strong>.{" "}
+          <strong>Plazos claros</strong>. <strong>Evidencia</strong> con fotos y notas.
+          <br />
+          <span className="mutedInline">Empieza con un piloto y escala cuando el flujo está validado.</span>
         </>
       ),
-      pills: ["Stands de feria", "Organizadores y expositores", "White-label / NDA", "Cobertura nacional"],
-      cta1: "Conseguir stand",
-      cta2: "Ver cómo trabajamos",
-      snapTitle: "Lo esencial (rápido)",
+      pills: ["Piloto primero", "Un responsable", "Fotos + notas", "NDA / white-label", "Cobertura nacional"],
+      cta1: "Pedir viabilidad",
+      cta2: "Ver el proceso",
+      snapTitle: "Resumen operativo",
       snap: [
         ["Piloto", "1–3 stands / sedes"],
         ["Plazo típico", "7–15 días"],
@@ -116,33 +117,33 @@ const i18n = {
     },
     who: {
       kicker: "¿Quiénes somos?",
-      title: "Especialistas en ejecución: que el stand esté listo, a tiempo y sin sorpresas.",
+      title: "Montajes que se entregan: a tiempo, sin sorpresas y con cierre documentado.",
       subtitle:
-        "Trabajamos con organizadores de ferias/eventos y con empresas de cualquier sector que exponen en España. Centralizamos coordinación y dejamos evidencia de cierre (fotos + notas).",
-      bulletsTitle: "Qué resolvemos",
+        "Para organizadores de ferias/eventos y empresas expositoras. Centralizamos coordinación y cerramos cada trabajo con un reporte claro (fotos + notas).",
+      bulletsTitle: "Qué asumimos nosotros",
       bullets: [
-        "Planificación y checklist (accesos, normativa del recinto, slots, riesgos)",
-        "Coordinación de producción/impresión cuando se necesita",
-        "Logística y entregas en el recinto (ventanas y condiciones)",
-        "Montaje, retoques y resolución de incidencias",
-        "Reporte final estructurado para tu equipo/cliente",
+        "Planificación y checklist (accesos, normativa, slots, riesgos)",
+        "Producción/impresión cuando aplica (coordinación y control previo)",
+        "Logística y entregas en recinto o tienda (ventanas y condiciones)",
+        "Montaje, retoques y resolución de incidencias onsite",
+        "Cierre estructurado: fotos + notas para tu equipo/cliente",
       ],
     },
     story: {
-      kicker: "Nuestra historia",
-      title: "Piloto primero, luego escala (un sistema repetible).",
+      kicker: "Cómo trabajamos",
+      title: "Piloto primero. Luego escala (un método repetible).",
       subtitle:
-        "No dependes de “probar suerte” en cada feria. Estandarizamos la ejecución para que tu equipo tenga un flujo predecible.",
+        "Estandarizamos la ejecución para que no dependas de improvisación en cada feria o instalación.",
       items: [
         {
           year: "01",
-          title: "Piloto (1–3 stands)",
-          text: "Validamos tiempos, coordinación con el recinto, calidad y reporting. Detectamos mejoras para escalar.",
+          title: "Piloto (1–3 stands / sedes)",
+          text: "Validamos tiempos, coordinación con el recinto, calidad y formato de reporte. Detectamos mejoras para escalar.",
         },
         {
           year: "02",
-          title: "Entrega de evento / feria",
-          text: "Un calendario, un responsable, un formato de reporte. Menos coordinación para tu equipo y menos fricción onsite.",
+          title: "Entrega de evento / instalación",
+          text: "Un calendario, un responsable y un reporte estándar. Menos coordinación para tu equipo y menos fricción onsite.",
         },
         {
           year: "03",
@@ -153,36 +154,36 @@ const i18n = {
     },
     values: {
       kicker: "Nuestros valores",
-      title: "Lo que se nota en cada montaje",
-      subtitle: "Una forma de trabajar pensada para organizadores y expositores: claridad, velocidad y control.",
+      title: "Orientados a resultado",
+      subtitle: "Sin humo: planificación, control previo y cierre con evidencia para reducir retrabajo.",
       items: [
-        { n: "01", title: "Compromiso", text: "Fechas claras, responsabilidades claras y seguimiento real." },
-        { n: "02", title: "Resolutividad", text: "Problemas onsite: se documentan y se resuelven con criterio." },
-        { n: "03", title: "Confianza", text: "Reporting consistente (fotos + notas) y comunicación directa." },
-        { n: "04", title: "Cercanía", text: "Un único punto de contacto. Menos cadenas y menos pérdida de contexto." },
-        { n: "05", title: "Equipo", text: "Coordinación de equipos locales y proveedores con control previo." },
-        { n: "06", title: "Sostenibilidad", text: "Preferencia por soluciones reutilizables y logística optimizada cuando aplica." },
+        { n: "01", title: "Propiedad", text: "Un responsable de principio a fin." },
+        { n: "02", title: "Claridad", text: "Fechas, alcance y responsabilidades por escrito." },
+        { n: "03", title: "Control previo", text: "Validamos accesos, normativa y materiales antes del montaje." },
+        { n: "04", title: "Resolución", text: "Incidencias onsite: se documentan y se resuelven." },
+        { n: "05", title: "Reporting", text: "Fotos + notas útiles para tu equipo/cliente." },
+        { n: "06", title: "Escalabilidad", text: "Mismo flujo para una sede o multi-ciudad." },
       ],
     },
     where: {
-      kicker: "Nuestras ubicaciones",
-      title: "Ejecución en España (y escalable por regiones)",
-      subtitle: "Podemos arrancar en una ciudad/recinto y escalar a cobertura nacional según necesidad.",
+      kicker: "Cobertura",
+      title: "Ejecución en España (escalable por regiones)",
+      subtitle: "Podemos arrancar en una ciudad/recinto y escalar a cobertura nacional manteniendo el mismo formato de trabajo y reporte.",
       cards: [
         {
           city: "Madrid",
           desc: "Soporte para IFEMA y recintos/eventos en la Comunidad de Madrid.",
-          bullets: ["Coordinación de entregas por slot", "Montaje y fix-ups", "Reporte 24–48h"],
+          bullets: ["Entregas por slot", "Montaje y fix-ups", "Reporte 24–48h"],
         },
         {
           city: "Barcelona",
           desc: "Soporte para Fira Barcelona y eventos corporativos en Cataluña.",
-          bullets: ["Montaje de stand + gráfica", "Validación de accesos y normativa", "Cierre fotográfico"],
+          bullets: ["Montaje de stand + gráfica", "Validación de accesos y normativa", "Cierre con fotos"],
         },
         {
           city: "España (multi-ciudad)",
-          desc: "Rollouts y ferias en varias ciudades con un flujo estándar.",
-          bullets: ["Un único reporting", "Un responsable de ejecución", "Escalado por fases"],
+          desc: "Ferias, campañas y proyectos en varias ciudades con un flujo estándar.",
+          bullets: ["Un único formato de reporte", "Un responsable de ejecución", "Escalado por fases"],
         },
       ],
     },
@@ -192,20 +193,24 @@ const i18n = {
       items: [
         {
           q: "¿Trabajáis con organizadores de ferias?",
-          a: <p>Sí. Podemos actuar como partner de ejecución para expositores, con coordinación onsite y reporte.</p>,
+          a: <p>Sí. Damos soporte de ejecución a expositores, con coordinación onsite y cierre con reporte.</p>,
+        },
+        {
+          q: "¿También hacéis tiendas (retail) además de ferias?",
+          a: <p>Sí. Ejecutamos instalaciones en tienda y cambios de branding con el mismo enfoque: planificación + montaje + evidencia.</p>,
         },
         {
           q: "¿Podéis gestionar producción/impresión?",
-          a: <p>Sí, cuando se requiere. Coordinamos fabricación y verificamos que el material llegue listo para montar.</p>,
+          a: <p>Sí, cuando aplica. Coordinamos fabricación y verificamos que el material llegue listo para montar.</p>,
         },
         { q: "¿Operáis en white-label y bajo NDA?", a: <p>Sí. No publicamos marcas ni proyectos.</p> },
-        { q: "¿Qué entregáis al final?", a: <p>Paquete de fotos + notas: estado final, incidencias y acciones realizadas.</p> },
+        { q: "¿Qué entregáis al final?", a: <p>Fotos + notas: estado final, incidencias y acciones realizadas.</p> },
       ],
     },
     contact: {
       kicker: "Contacto",
-      title: "¿Necesitas ayuda para gestionar tu stand en una feria?",
-      subtitle: "Rellena el formulario y te respondemos con viabilidad, timing y un plan de piloto.",
+      title: "Cuéntanos tu stand, branding o instalación en tienda",
+      subtitle: "Rellena el formulario y te respondemos con viabilidad, timing y un plan simple (piloto si encaja).",
       form: {
         name: "Nombre",
         email: "Email *",
@@ -213,44 +218,50 @@ const i18n = {
         role: "Soy…",
         roles: ["Organizador de feria/evento", "Empresa expositora", "Agencia", "Otro"],
         message: "Mensaje *",
-        send: "Enviar",
-        ok: "Abriendo tu cliente de email…",
+        send: "Enviar solicitud",
+        ok: "Enviando…",
         err: "Añade tu email y un mensaje breve.",
-        fine: "White-label / NDA disponible. No publicamos proyectos.",
+        fine: "NDA / white-label disponible. No publicamos proyectos.",
       },
       side: {
         title: "Incluye (si puedes)",
-        bullets: ["Feria/recinto y ciudad", "Fechas de montaje/desmontaje", "Tamaño del stand y elementos", "Qué está producido vs por producir", "Restricciones de acceso/horarios"],
+        bullets: [
+          "Feria/recinto o tienda + ciudad",
+          "Fechas de montaje/desmontaje",
+          "Tamaño del stand / alcance del branding",
+          "Qué está producido vs por producir",
+          "Restricciones de acceso/horarios",
+        ],
         email: "hello@moveops.services",
       },
     },
-    footer: "MoveOps — Stands y ejecución en España",
+    footer: "MoveOps — Ejecución real en España para stands, branding y retail",
   },
 
   en: {
     nav: {
       who: "About",
-      story: "How it works",
+      story: "How we work",
       values: "Values",
-      where: "Locations",
+      where: "Coverage",
       faq: "FAQ",
       contact: "Contact",
     },
     hero: {
-      kicker: "Trade-fair stands & execution in Spain",
-      h1: "Your local team to build trade-fair stands (and retail installs) in Spain.",
+      kicker: "Spain execution • Stands • Branding • Retail",
+      h1: "Real execution in Spain for stands, branding and retail.",
       p: (
         <>
-          MoveOps coordinates <strong>production</strong>, <strong>logistics</strong> and{" "}
-          <strong>on-site build</strong> with one accountable owner and a{" "}
-          <strong>photo + notes</strong> close-out. Most partners start with a{" "}
-          <strong>pilot</strong> and scale once the workflow is proven.
+          We plan, coordinate and build. <strong>One accountable owner</strong>.{" "}
+          <strong>Clear timelines</strong>. <strong>Proof</strong> with photos and notes.
+          <br />
+          <span className="mutedInline">Start with a pilot and scale once the workflow is proven.</span>
         </>
       ),
-      pills: ["Trade-fair stands", "Organizers & exhibitors", "White-label / NDA", "Nationwide"],
-      cta1: "Get a stand plan",
+      pills: ["Pilot first", "One accountable owner", "Photos + notes", "NDA / white-label", "Nationwide"],
+      cta1: "Check feasibility",
       cta2: "See the process",
-      snapTitle: "Quick snapshot",
+      snapTitle: "Operational snapshot",
       snap: [
         ["Pilot", "1–3 stands / sites"],
         ["Typical lead time", "7–15 days"],
@@ -260,48 +271,60 @@ const i18n = {
     },
     who: {
       kicker: "About us",
-      title: "Execution specialists: ready on time, without surprises.",
+      title: "Builds that get delivered: on time, no surprises, documented close-out.",
       subtitle:
-        "We work with event organizers and exhibiting companies across sectors. We centralize coordination and provide evidence-based close-out (photos + notes).",
-      bulletsTitle: "What we handle",
+        "For event organizers and exhibiting companies across sectors. We centralize coordination and close each job with a clear report (photos + notes).",
+      bulletsTitle: "What we take on",
       bullets: [
         "Planning & checklist (access, venue rules, time slots, risks)",
-        "Production/printing coordination when needed",
-        "Venue deliveries (slots and requirements)",
-        "Build, finishing and issue handling",
-        "Structured close-out report for your team/client",
+        "Production/printing when needed (coordination and pre-checks)",
+        "Venue/store deliveries (slots and requirements)",
+        "Build, finishing and onsite issue handling",
+        "Structured close-out: photos + notes for your team/client",
       ],
     },
     story: {
-      kicker: "How it works",
-      title: "Pilot first, then scale (repeatable system).",
+      kicker: "How we work",
+      title: "Pilot first. Then scale (repeatable method).",
       subtitle:
-        "No “guesswork” every time. We standardize execution so your team gets predictable delivery.",
+        "We standardize delivery so you don’t rely on improvisation at each fair or install.",
       items: [
-        { year: "01", title: "Pilot (1–3 stands)", text: "Validate timing, venue coordination, quality and reporting. Capture improvements for scaling." },
-        { year: "02", title: "Event delivery", text: "One schedule, one owner, one reporting format. Less coordination for your team and less onsite friction." },
-        { year: "03", title: "Ongoing coverage (if it fits)", text: "After successful deliveries, we can operate under NDA and, if needed, white-label." },
+        {
+          year: "01",
+          title: "Pilot (1–3 stands / sites)",
+          text: "Validate timing, venue coordination, quality and reporting format. Capture improvements for scaling.",
+        },
+        {
+          year: "02",
+          title: "Event / installation delivery",
+          text: "One schedule, one owner, one standard report. Less coordination for your team and less onsite friction.",
+        },
+        {
+          year: "03",
+          title: "Ongoing coverage (if it fits)",
+          text: "After successful deliveries, we can operate under NDA and, if needed, white-label.",
+        },
       ],
     },
     values: {
       kicker: "Values",
-      title: "What shows up in every build",
-      subtitle: "Built for organizers and exhibitors: clarity, speed and control.",
+      title: "Delivery-first",
+      subtitle: "No fluff: planning, pre-checks, and evidence-based close-out to reduce rework.",
       items: [
-        { n: "01", title: "Commitment", text: "Clear dates, clear ownership, real follow-through." },
-        { n: "02", title: "Problem-solving", text: "Onsite issues: documented and resolved pragmatically." },
-        { n: "03", title: "Trust", text: "Consistent reporting (photos + notes) and direct communication." },
-        { n: "04", title: "Closeness", text: "One point of contact. Fewer chains, less context loss." },
-        { n: "05", title: "Team", text: "Coordination of local crews and vendors with pre-checks." },
-        { n: "06", title: "Sustainability", text: "Preference for reusable solutions and optimized logistics when applicable." },
+        { n: "01", title: "Ownership", text: "One owner end-to-end." },
+        { n: "02", title: "Clarity", text: "Dates, scope and responsibilities in writing." },
+        { n: "03", title: "Pre-checks", text: "We validate access, rules and materials before build day." },
+        { n: "04", title: "Resolution", text: "Onsite issues are documented and resolved." },
+        { n: "05", title: "Reporting", text: "Photos + notes your team/client can use." },
+        { n: "06", title: "Scalability", text: "Same workflow for one site or multi-city." },
       ],
     },
     where: {
-      kicker: "Locations",
+      kicker: "Coverage",
       title: "Execution across Spain (scalable by region)",
-      subtitle: "Start in one city/venue and scale to nationwide coverage when needed.",
+      subtitle: "Start in one city/venue and scale to nationwide coverage while keeping the same workflow and reporting.",
       cards: [
-        { city: "Madrid", desc: "Support for IFEMA and Madrid-region venues.", bullets: ["Time-slot deliveries", "Build & fix-ups", "24–48h close-out"] },
+        { city: "Madrid", desc: "Support for IFEMA and Madrid-region venues.", bullets: ["Time-slot deliveries", "Build & fix-ups", "24–48h reporting"] },
         { city: "Barcelona", desc: "Support for Fira Barcelona and corporate events in Catalonia.", bullets: ["Stand build + graphics", "Access & rules validation", "Photo close-out"] },
         { city: "Spain (multi-city)", desc: "Multi-city fairs/rollouts with a standard workflow.", bullets: ["One reporting format", "One execution owner", "Phase-based scaling"] },
       ],
@@ -310,16 +333,17 @@ const i18n = {
       kicker: "FAQ",
       title: "Frequently asked",
       items: [
-        { q: "Do you work with event organizers?", a: <p>Yes. We can act as an execution partner for exhibitors, including onsite coordination and reporting.</p> },
+        { q: "Do you work with event organizers?", a: <p>Yes. We support exhibitors with onsite coordination and documented close-out reporting.</p> },
+        { q: "Do you cover retail installs as well?", a: <p>Yes. Store installs and branding updates with the same approach: planning + build + proof.</p> },
         { q: "Can you manage production/printing?", a: <p>Yes when required. We coordinate fabrication and ensure it arrives install-ready.</p> },
         { q: "White-label and NDA?", a: <p>Yes. We don’t publish brands or projects.</p> },
-        { q: "What do you deliver after the build?", a: <p>Photo pack + notes: final status, issues, and actions taken.</p> },
+        { q: "What do you deliver after the build?", a: <p>Photos + notes: final status, issues, and actions taken.</p> },
       ],
     },
     contact: {
       kicker: "Contact",
-      title: "Need help managing your stand for a fair?",
-      subtitle: "Send details. We reply with feasibility, timing and a pilot plan.",
+      title: "Tell us about your stand, branding or retail installation",
+      subtitle: "Send details. We reply with feasibility, timing and a simple plan (pilot if it fits).",
       form: {
         name: "Name",
         email: "Email *",
@@ -327,20 +351,21 @@ const i18n = {
         role: "I am…",
         roles: ["Organizer", "Exhibiting company", "Agency", "Other"],
         message: "Message *",
-        send: "Send",
-        ok: "Opening your email client…",
+        send: "Send request",
+        ok: "Sending…",
         err: "Please add your email and a short message.",
-        fine: "White-label / NDA available. We don’t publish projects.",
+        fine: "NDA / white-label available. We don’t publish projects.",
       },
       side: {
         title: "Include (if you can)",
-        bullets: ["Fair/venue and city", "Build/dismantle dates", "Stand size and elements", "Produced vs to be produced", "Access/time slot constraints"],
+        bullets: ["Fair/venue or store + city", "Build/dismantle dates", "Stand size / branding scope", "Produced vs to be produced", "Access/time slot constraints"],
         email: "hello@moveops.services",
       },
     },
-    footer: "MoveOps — Trade fairs & execution in Spain",
+    footer: "MoveOps — Real execution in Spain for stands, branding and retail",
   },
 };
+
 
 export default function App() {
   const year = useMemo(() => new Date().getFullYear(), []);
