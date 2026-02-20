@@ -3,6 +3,7 @@ import { useMemo, useState } from "react";
 import "./App.css";
 import logo from "./assets/moveops-logo.png";
 
+
 /* ---------- Small UI ---------- */
 function LangToggle({ lang, onToggle }) {
   return (
