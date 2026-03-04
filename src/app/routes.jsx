@@ -1,11 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Shell from "../layout/Shell.jsx";
-
 import Home from "../pages/Home.jsx";
 import SpainInstallationPartner from "../pages/SpainInstallationPartner.jsx";
 import StandInstallationSpain from "../pages/StandInstallationSpain.jsx";
 import Contact from "../pages/Contact.jsx";
-
 const router = createBrowserRouter([
   {
     element: <Shell />,
