@@ -29,6 +29,11 @@ export default function BlogPage() {
             <div className="blogGrid">
               {posts.map((post) => (
                 <Link href={`/blog/${post.slug}`} key={post.slug} className="blogCard">
+                  {post.cover && (
+                    <div className="blogCover">
+                      <img src={post.cover} alt={post.coverAlt || post.title} loading="lazy" />
+                    </div>
+                  )}
                   <div className="blogTag">{post.tag}</div>
                   <div className="blogTitle">{post.title}</div>
                   <div className="blogExcerpt">{post.excerpt}</div>
@@ -42,13 +47,15 @@ export default function BlogPage() {
       </main>
       <footer className="footer">
         <div className="container">
-          <div className="footGrid">
+          <div className="footSimple">
             <div className="footBrand">
               <img className="footLogo" src="/moveops-logo.png" alt="MoveOps" />
               <div className="footMeta"><div className="footTitle">MoveOps</div><div className="footSub">© {new Date().getFullYear()}</div></div>
             </div>
-            <nav className="footNav"><Link href="/">Home</Link><Link href="/contact">Contact</Link></nav>
-            <div className="footCta"><a className="footEmail" href="mailto:hello@moveops.services">hello@moveops.services</a></div>
+            <div className="footCta">
+              <div className="footEmailLabel">Email</div>
+              <a className="footEmail" href="mailto:hello@moveops.services">hello@moveops.services</a>
+            </div>
           </div>
         </div>
       </footer>

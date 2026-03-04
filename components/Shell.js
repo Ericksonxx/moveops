@@ -80,7 +80,7 @@ export default function Shell({ children, lang, setLang, t }) {
             <Link href="/exhibition-stand-installation-spain" onClick={() => setMenuOpen(false)}>{t.nav.stands}</Link>
             <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
             <Link href="/contact" onClick={() => setMenuOpen(false)}>{t.nav.contact}</Link>
-            <Link className="btn mobileSheetCta" href="/contact" onClick={() => setMenuOpen(false)}>{t.nav.cta}</Link>
+            <Link className="btn mobileSheetCta" href="/contact" onClick={() => setMenuOpen(false)} style={{background:"#111418",color:"#fff"}}>{t.nav.cta}</Link>
           </nav>
         </div>
       </header>
@@ -89,7 +89,7 @@ export default function Shell({ children, lang, setLang, t }) {
 
       <footer className="footer">
         <div className="container">
-          <div className="footGrid">
+          <div className="footSimple">
             <div className="footBrand">
               <img className="footLogo" src="/moveops-logo.png" alt="MoveOps" />
               <div className="footMeta">
@@ -97,12 +97,6 @@ export default function Shell({ children, lang, setLang, t }) {
                 <div className="footSub">© {year}</div>
               </div>
             </div>
-            <nav className="footNav" aria-label="Footer">
-              <Link href="/spain-installation-partner">{t.nav.install}</Link>
-              <Link href="/exhibition-stand-installation-spain">{t.nav.stands}</Link>
-              <Link href="/blog">Blog</Link>
-              <Link href="/contact">{t.nav.contact}</Link>
-            </nav>
             <div className="footCta">
               <div className="footEmailLabel">Email</div>
               <a className="footEmail" href="mailto:hello@moveops.services">hello@moveops.services</a>

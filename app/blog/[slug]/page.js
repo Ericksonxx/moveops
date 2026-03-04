@@ -52,13 +52,15 @@ export default function BlogPost({ params }) {
       </main>
       <footer className="footer">
         <div className="container">
-          <div className="footGrid">
+          <div className="footSimple">
             <div className="footBrand">
               <img className="footLogo" src="/moveops-logo.png" alt="MoveOps" />
               <div className="footMeta"><div className="footTitle">MoveOps</div><div className="footSub">© {new Date().getFullYear()}</div></div>
             </div>
-            <nav className="footNav"><Link href="/">Home</Link><Link href="/blog">Blog</Link><Link href="/contact">Contact</Link></nav>
-            <div className="footCta"><a className="footEmail" href="mailto:hello@moveops.services">hello@moveops.services</a></div>
+            <div className="footCta">
+              <div className="footEmailLabel">Email</div>
+              <a className="footEmail" href="mailto:hello@moveops.services">hello@moveops.services</a>
+            </div>
           </div>
         </div>
       </footer>
