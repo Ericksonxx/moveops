@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MoveOps — Spain & Portugal execution partner</title>
+  <meta name="description" content="White-label retail installation, PLV and stand build support across Spain and Portugal. Photo reporting, 24–48h mobilisation, NDA delivery for agencies.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --black:  #0A0A0A;
+      --ink:    #1A1A1A;
+      --mid:    #555550;
+      --muted:  #999993;
+      --border: #DDDDD8;
+      --border2:#EEEEEA;
+      --surface:#F7F7F5;
+      --white:  #FFFFFF;
+    }
+    html { scroll-behavior: smooth; }
+    body { background: var(--white); color: var(--ink); font-family: 'Syne', sans-serif; overflow-x: hidden; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 60px; padding: 0 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent; transition: border-color 0.2s;
+    }
+    nav.scrolled { border-bottom-color: var(--border); }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-mark {
+      width: 28px; height: 28px; background: var(--black); border-radius: 4px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .nav-mark svg { width: 13px; height: 13px; fill: none; stroke: #fff; stroke-width: 2.2; }
+    .nav-wordmark { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--black); letter-spacing: 0.5px; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-right { display: flex; align-items: center; gap: 10px; }
+    .btn-nav { background: var(--black); color: #fff; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; padding: 9px 20px; border-radius: 5px; border: none; cursor: pointer; transition: opacity 0.15s; text-decoration: none; }
+    .btn-nav:hover { opacity: 0.8; }
+    .btn-nav.outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+    .btn-nav.outline:hover { border-color: var(--ink); opacity: 1; }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 60px;
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 80px 64px 80px 80px;
+      border-right: 1px solid var(--border);
+    }
+    .hero-right {
+      background: var(--black);
+      display: flex; flex-direction: column; justify-content: space-between;
+      padding: 56px 56px 56px;
+      position: relative; overflow: hidden;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--muted);
+      margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
+      opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+    }
+    .hero-tag::before { content: ''; width: 20px; height: 1px; background: var(--border); }
+
+    .hero-h1 {
+      font-size: clamp(48px, 5.5vw, 76px); font-weight: 800;
+      line-height: 1.0; letter-spacing: -1.5px; color: var(--black);
+      margin-bottom: 32px;
+      opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+    .hero-h1 span { color: var(--muted); font-weight: 400; }
+
+    .hero-sub {
+      font-size: 16px; font-weight: 400; line-height: 1.7; color: var(--mid);
+      max-width: 420px; margin-bottom: 48px;
+      opacity: 0; animation: fadeUp 0.6s ease 0.35s forwards;
+    }
+
+    .hero-actions {
+      display: flex; gap: 10px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.6s ease 0.45s forwards;
+    }
+    .btn-primary {
+      background: var(--black); color: #fff;
+      font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
+      padding: 14px 28px; border-radius: 5px; border: none; cursor: pointer;
+      transition: opacity 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { opacity: 0.8; }
+    .btn-secondary {
+      background: transparent; color: var(--ink);
+      font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 500;
+      padding: 14px 28px; border-radius: 5px; border: 1.5px solid var(--border);
+      cursor: pointer; transition: border-color 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-secondary:hover { border-color: var(--ink); }
+
+    /* hero stats */
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: auto;
+      opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards;
+    }
+    .hero-stat { padding: 28px 0; border-right: 1px solid rgba(255,255,255,0.08); }
+    .hero-stat:last-child { border-right: none; padding-left: 24px; }
+    .hero-stat:not(:first-child) { padding-left: 24px; }
+    .hero-stat-val { font-size: 32px; font-weight: 800; color: #fff; letter-spacing: -1px; margin-bottom: 4px; }
+    .hero-stat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+    /* hero right content */
+    .hero-right-top { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+    .hero-right-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 20px; }
+    .hero-checklist { display: flex; flex-direction: column; gap: 14px; }
+    .hero-check { display: flex; align-items: flex-start; gap: 14px; }
+    .check-box { width: 20px; height: 20px; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .check-box.done { background: #fff; border-color: #fff; }
+    .check-box.done::after { content: ''; width: 5px; height: 9px; border-right: 2px solid var(--black); border-bottom: 2px solid var(--black); transform: rotate(45deg) translate(-1px, -1px); }
+    .check-box.pending { opacity: 0.3; }
+    .check-text { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75); line-height: 1.4; }
+    .check-sub { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 2px; font-weight: 400; }
+
+    /* hero grid pattern */
+    .hero-grid-pattern {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* ── SHARED ── */
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::before { content: ''; width: 16px; height: 1px; background: var(--border); }
+    .section-h {
+      font-size: clamp(32px, 3.5vw, 48px); font-weight: 800;
+      letter-spacing: -1px; line-height: 1.05; color: var(--black); margin-bottom: 16px;
+    }
+    .section-h span { color: var(--muted); font-weight: 400; }
+    .section-sub { font-size: 16px; color: var(--mid); line-height: 1.7; font-weight: 400; max-width: 520px; }
+
+    /* ── SERVICES ── */
+    .services { border-bottom: 1px solid var(--border); }
+    .services-header { padding: 80px 80px 56px; border-bottom: 1px solid var(--border); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .service-col { padding: 48px 40px; border-right: 1px solid var(--border); }
+    .service-col:last-child { border-right: none; }
+    .service-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--border); letter-spacing: 2px; margin-bottom: 24px; }
+    .service-icon { font-size: 24px; margin-bottom: 16px; }
+    .service-title { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 10px; letter-spacing: -0.3px; }
+    .service-desc { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 400; margin-bottom: 20px; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; padding: 4px 10px; border-radius: 3px; background: var(--surface); color: var(--mid); border: 1px solid var(--border2); }
+
+    /* ── HOW ── */
+    .how { border-bottom: 1px solid var(--border); }
+    .how-header { padding: 80px 80px 56px; border-bottom: 1px solid var(--border); }
+    .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); }
+    .how-step { padding: 48px 40px; border-right: 1px solid var(--border); position: relative; }
+    .how-step:last-child { border-right: none; }
+    .how-step-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--border); letter-spacing: 2px; margin-bottom: 20px; }
+    .how-step-title { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 10px; letter-spacing: -0.3px; }
+    .how-step-desc { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 400; }
+    .how-step-items { margin-top: 20px; display: flex; flex-direction: column; gap: 8px; }
+    .how-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--mid); font-weight: 400; }
+    .how-item::before { content: '—'; color: var(--border); flex-shrink: 0; font-family: 'DM Mono', monospace; }
+
+    /* ── REPORTING ── */
+    .reporting { background: var(--black); border-bottom: 1px solid #222; }
+    .reporting-inner { display: grid; grid-template-columns: 1fr 1fr; }
+    .reporting-left { padding: 80px; border-right: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; justify-content: center; }
+    .reporting-right { padding: 80px; display: flex; flex-direction: column; justify-content: center; }
+    .reporting-left .section-label { color: rgba(255,255,255,0.25); }
+    .reporting-left .section-label::before { background: rgba(255,255,255,0.1); }
+    .reporting-left .section-h { color: #fff; }
+    .reporting-left .section-sub { color: rgba(255,255,255,0.4); }
+    .report-items { display: flex; flex-direction: column; gap: 0; }
+    .report-item { display: flex; align-items: flex-start; gap: 20px; padding: 24px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .report-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
+    .report-item-icon { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+    .report-item-title { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
+    .report-item-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.5; font-weight: 400; }
+
+    /* ── COVERAGE ── */
+    .coverage { border-bottom: 1px solid var(--border); }
+    .coverage-inner { display: grid; grid-template-columns: 1fr 1fr; }
+    .coverage-left { padding: 80px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+    .coverage-right { padding: 40px 60px; display: flex; align-items: center; justify-content: center; background: var(--surface); }
+    .map-wrap { position: relative; width: 100%; max-width: 460px; }
+    .map-wrap svg.map-outline { width: 100%; height: auto; display: block; }
+    .map-pin { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 3px; }
+    .map-pin-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--black); flex-shrink: 0; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
+    .map-pin-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1.5px; color: var(--black); white-space: nowrap; background: rgba(247,247,245,0.9); padding: 1px 4px; border-radius: 2px; }
+    .coverage-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 32px; }
+    .coverage-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; padding: 5px 12px; border: 1px solid var(--border); border-radius: 3px; color: var(--mid); background: var(--white); }
+
+    /* ── STORE PRODUCT ── */
+    .store-section { background: var(--surface); border-bottom: 1px solid var(--border); }
+    .store-inner { display: grid; grid-template-columns: 1fr 1fr; }
+    .store-left { padding: 80px; border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
+    .store-right { padding: 80px; display: flex; flex-direction: column; justify-content: center; }
+    .store-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--mid);
+      border: 1px solid var(--border); border-radius: 4px;
+      padding: 6px 12px; margin-bottom: 24px; width: fit-content;
+    }
+    .store-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--black); }
+    .store-features { display: flex; flex-direction: column; gap: 0; margin-top: 36px; }
+    .store-feat { display: flex; align-items: flex-start; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--border2); }
+    .store-feat:first-child { border-top: 1px solid var(--border2); }
+    .store-feat-icon { font-size: 18px; flex-shrink: 0; width: 28px; text-align: center; margin-top: 2px; }
+    .store-feat-title { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 3px; }
+    .store-feat-desc { font-size: 13px; color: var(--mid); line-height: 1.5; font-weight: 400; }
+
+    /* mock terminal */
+    .mock-terminal {
+      background: var(--black); border-radius: 8px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .mock-terminal-bar { background: #1a1a1a; padding: 12px 16px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .mock-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .mock-terminal-body { padding: 20px; font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; }
+    .t-muted { color: rgba(255,255,255,0.2); }
+    .t-label { color: rgba(255,255,255,0.35); }
+    .t-val { color: rgba(255,255,255,0.75); }
+    .t-green { color: #4CAF82; }
+    .t-amber { color: #C9A84C; }
+    .t-row { display: flex; justify-content: space-between; padding: 2px 0; }
+    .t-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 8px 0; }
+
+    /* ── FAQ ── */
+    .faq { border-bottom: 1px solid var(--border); }
+    .faq-header { padding: 80px 80px 56px; border-bottom: 1px solid var(--border); }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; }
+    .faq-col { padding: 0; }
+    .faq-col:first-child { border-right: 1px solid var(--border); }
+    .faq-item { padding: 32px 48px; border-bottom: 1px solid var(--border2); }
+    .faq-q { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 10px; letter-spacing: -0.2px; }
+    .faq-a { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 400; }
+
+    /* ── CTA FINAL ── */
+    .cta-final {
+      background: var(--black);
+      padding: 100px 80px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      border-bottom: 1px solid #222;
+    }
+    .cta-final-h { font-size: clamp(36px, 4vw, 56px); font-weight: 800; color: #fff; letter-spacing: -1.5px; line-height: 1.05; }
+    .cta-final-h span { color: rgba(255,255,255,0.25); font-weight: 400; }
+    .cta-final-right { display: flex; flex-direction: column; gap: 16px; }
+    .cta-final-sub { font-size: 15px; color: rgba(255,255,255,0.4); line-height: 1.7; font-weight: 400; margin-bottom: 8px; }
+    .btn-white { background: #fff; color: var(--black); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; padding: 16px 32px; border-radius: 5px; border: none; cursor: pointer; transition: opacity 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; width: fit-content; }
+    .btn-white:hover { opacity: 0.88; }
+    .btn-ghost { background: transparent; color: rgba(255,255,255,0.5); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 500; padding: 16px 0; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; width: fit-content; transition: color 0.15s; }
+    .btn-ghost:hover { color: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 32px 80px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--border);
+    }
+    .footer-left { display: flex; align-items: center; gap: 16px; }
+    .footer-mark { width: 24px; height: 24px; background: var(--black); border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+    .footer-mark svg { width: 11px; height: 11px; fill: none; stroke: #fff; stroke-width: 2.2; }
+    .footer-name { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--mid); letter-spacing: 1px; }
+    .footer-links { display: flex; gap: 28px; }
+    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.15s; }
+    .footer-links a:hover { color: var(--ink); }
+    .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
+
+
+    /* ── LOGO IMAGES ── */
+    .nav-logo-img { width: 30px; height: 30px; object-fit: contain; border-radius: 3px; flex-shrink: 0; }
+    .nav-wordmark-img { height: 18px; width: auto; object-fit: contain; }
+
+    /* ── BURGER ── */
+    .burger {
+      display: none; flex-direction: column; justify-content: center; gap: 5px;
+      width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .burger span { display: block; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.25s; transform-origin: center; }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      /* NAV */
+      nav { padding: 0 24px; }
+      .burger { display: flex; }
+      .desktop-only { display: none !important; }
+      .nav-links {
+        position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
+        background: #ffffff; z-index: 99;
+        flex-direction: column; align-items: flex-start; justify-content: flex-start;
+        gap: 0; padding: 8px 0;
+        transform: translateX(100%); transition: transform 0.3s ease;
+        border-top: 1px solid #DDDDD8;
+        display: flex !important;
+        box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+      }
+      .nav-links.open { transform: translateX(0); }
+      .nav-links a {
+        font-size: 20px; font-weight: 700; color: #0A0A0A !important;
+        padding: 20px 32px; width: 100%; border-bottom: 1px solid #EEEEEA;
+        text-decoration: none; display: block;
+        background: #ffffff;
+      }
+      .nav-links a:hover { background: #F7F7F5; }
+
+      /* HERO */
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 60px 28px 48px; border-right: none; border-bottom: 1px solid var(--border); }
+      .hero-right { padding: 40px 28px; min-height: 400px; }
+      .hero-h1 { font-size: clamp(40px, 9vw, 60px); }
+      .hero-stats { grid-template-columns: repeat(3,1fr); }
+
+      /* SECTIONS — all 2-col grids become 1-col */
+      .services-grid,
+      .how-steps { grid-template-columns: 1fr; }
+      .service-col,
+      .how-step { border-right: none; border-bottom: 1px solid var(--border); }
+      .service-col:last-child,
+      .how-step:last-child { border-bottom: none; }
+      .services-header,
+      .how-header,
+      .faq-header { padding: 56px 28px 40px; }
+
+      .reporting-inner,
+      .coverage-inner,
+      .store-inner,
+      .cta-final { grid-template-columns: 1fr; }
+      .reporting-left,
+      .reporting-right { padding: 56px 28px; border-right: none; }
+      .reporting-left { border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .coverage-left { padding: 56px 28px; border-right: none; border-bottom: 1px solid var(--border); }
+      .coverage-right { padding: 40px 28px; }
+      .store-left { padding: 56px 28px; border-right: none; border-bottom: 1px solid var(--border); }
+      .store-right { padding: 40px 28px; }
+
+      .faq-grid { grid-template-columns: 1fr; }
+      .faq-col:first-child { border-right: none; }
+      .faq-item { padding: 28px 28px; }
+
+      .cta-final { padding: 64px 28px; gap: 40px; }
+      .cta-final-h { font-size: clamp(32px, 8vw, 48px); }
+
+      footer { padding: 24px 28px; flex-wrap: wrap; gap: 16px; }
+      .footer-links { gap: 16px; flex-wrap: wrap; }
+
+      .map-wrap { max-width: 320px; margin: 0 auto; }
+    }
+
+    @media (max-width: 600px) {
+      .hero-left { padding: 48px 20px 40px; }
+      .hero-right { padding: 32px 20px; }
+      .hero-stats { grid-template-columns: repeat(3,1fr); gap: 0; }
+      .hero-stat { padding: 20px 0; }
+      .hero-stat:not(:first-child) { padding-left: 12px; }
+      .hero-stat-val { font-size: 22px; }
+      .services-header, .how-header, .faq-header { padding: 48px 20px 32px; }
+      .service-col, .how-step { padding: 36px 20px; }
+      .reporting-left, .reporting-right { padding: 48px 20px; }
+      .coverage-left { padding: 48px 20px; }
+      .coverage-right { padding: 32px 20px; }
+      .store-left, .store-right { padding: 48px 20px; }
+      .faq-item { padding: 24px 20px; }
+      .cta-final { padding: 52px 20px; }
+      footer { padding: 20px 20px; }
+      .coverage-tags { gap: 6px; }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nav-logo" href="#">
+    <img src="logo-mark.png" alt="MoveOps" class="nav-logo-img">
+    <img src="logo-text.png" alt="MoveOps" class="nav-wordmark-img">
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#how">How it works</a>
+    <a href="#store">MoveOps Store</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <div class="nav-links" id="nav-links">
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#how" onclick="closeMenu()">How it works</a>
+    <a href="#store" onclick="closeMenu()">MoveOps Store</a>
+    <a href="#faq" onclick="closeMenu()">FAQ</a>
+  </div>
+  <div class="nav-right">
+    <a href="mailto:hello@moveops.services" class="btn-nav outline desktop-only">Get quote</a>
+    <a href="mailto:hello@moveops.services" class="btn-nav desktop-only">hello@moveops.services</a>
+    <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Spain & Portugal — execution partner</div>
+    <h1 class="hero-h1">Your local crew.<br><span>Ready in 48h.</span></h1>
+    <p class="hero-sub">We execute retail installs, PLV rollouts and stand build support across Spain and Portugal. White-label, under NDA, with photo reporting included.</p>
+    <div class="hero-actions">
+      <a href="mailto:hello@moveops.services?subject=Feasibility check" class="btn-primary">Check feasibility →</a>
+      <a href="#services" class="btn-secondary">See services</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-grid-pattern"></div>
+    <div class="hero-right-top">
+      <div class="hero-right-label">Typical project checklist</div>
+      <div class="hero-checklist">
+        <div class="hero-check">
+          <div class="check-box done"></div>
+          <div><div class="check-text">Brief received + scope confirmed</div><div class="check-sub">24h reply / feasibility check</div></div>
+        </div>
+        <div class="hero-check">
+          <div class="check-box done"></div>
+          <div><div class="check-text">Crew assigned + logistics aligned</div><div class="check-sub">Delivery addresses, H&S, permits</div></div>
+        </div>
+        <div class="hero-check">
+          <div class="check-box done"></div>
+          <div><div class="check-text">On-site execution</div><div class="check-sub">One owner, clear checklists</div></div>
+        </div>
+        <div class="hero-check">
+          <div class="check-box pending"></div>
+          <div><div class="check-text">Close-out report delivered</div><div class="check-sub">Photos + punch list, 24–48h</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-val">&lt;24h</div>
+        <div class="hero-stat-label">Reply time</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">48h</div>
+        <div class="hero-stat-label">Mobilisation</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-val">ES+PT</div>
+        <div class="hero-stat-label">Coverage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services">
+  <div class="services-header reveal">
+    <div class="section-label">What we do</div>
+    <h2 class="section-h">Three service lines.<br><span>One point of contact.</span></h2>
+  </div>
+  <div class="services-grid">
+    <div class="service-col reveal">
+      <div class="service-num">01</div>
+      <div class="service-icon">🏪</div>
+      <div class="service-title">Retail installs</div>
+      <div class="service-desc">POS displays, vinyls, lightboxes, signage, PLV. Crew + supervision + close-out report. Single-store or multi-city rollout.</div>
+      <div class="service-tags">
+        <span class="tag">PLV / POS</span>
+        <span class="tag">Window vinyls</span>
+        <span class="tag">Lightboxes</span>
+        <span class="tag">Shop fitting</span>
+        <span class="tag">Multi-city</span>
+      </div>
+    </div>
+    <div class="service-col reveal" style="transition-delay:.1s">
+      <div class="service-num">02</div>
+      <div class="service-icon">🏗️</div>
+      <div class="service-title">Stand build support</div>
+      <div class="service-desc">On-site build assistance for exhibition stands. Venue coordination, fix-ups, show close and dismantle. IFEMA, Fira Barcelona and nationwide.</div>
+      <div class="service-tags">
+        <span class="tag">IFEMA Madrid</span>
+        <span class="tag">Fira Barcelona</span>
+        <span class="tag">Build + dismantle</span>
+        <span class="tag">Venue coord.</span>
+      </div>
+    </div>
+    <div class="service-col reveal" style="transition-delay:.2s">
+      <div class="service-num">03</div>
+      <div class="service-icon">📍</div>
+      <div class="service-title">Multi-city rollouts</div>
+      <div class="service-desc">Same brief, same checklist, same report format across every location. One owner manages all cities so you don't have to coordinate locally.</div>
+      <div class="service-tags">
+        <span class="tag">Nationwide</span>
+        <span class="tag">Portugal optional</span>
+        <span class="tag">One owner</span>
+        <span class="tag">Uniform reporting</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how">
+  <div class="how-header reveal">
+    <div class="section-label">Process</div>
+    <h2 class="section-h">Brief to close-out.<br><span>Three steps.</span></h2>
+  </div>
+  <div class="how-steps">
+    <div class="how-step reveal">
+      <div class="how-step-num">01 — BRIEF</div>
+      <div class="how-step-title">Send us the scope</div>
+      <div class="how-step-desc">We reply within 24h with feasibility and a rough plan. No lengthy intake forms.</div>
+      <div class="how-step-items">
+        <div class="how-item">City / venue + dates</div>
+        <div class="how-item">Scope and assets</div>
+        <div class="how-item">Delivery addresses + onsite contact</div>
+        <div class="how-item">H&S, permits, venue rules</div>
+      </div>
+    </div>
+    <div class="how-step reveal" style="transition-delay:.1s">
+      <div class="how-step-num">02 — DELIVERY</div>
+      <div class="how-step-title">We execute on the ground</div>
+      <div class="how-step-desc">One owner manages the crew and keeps you updated. You don't need to be there.</div>
+      <div class="how-step-items">
+        <div class="how-item">Crew + supervision included</div>
+        <div class="how-item">Checklist aligned with venue rules</div>
+        <div class="how-item">Issues flagged in real time</div>
+        <div class="how-item">White-label under your brand</div>
+      </div>
+    </div>
+    <div class="how-step reveal" style="transition-delay:.2s">
+      <div class="how-step-num">03 — CLOSE-OUT</div>
+      <div class="how-step-title">Report delivered in 24–48h</div>
+      <div class="how-step-desc">Photos, notes and punch list ready for client sign-off. Nothing to chase.</div>
+      <div class="how-step-items">
+        <div class="how-item">Before/after by area or store</div>
+        <div class="how-item">Issues log with resolutions</div>
+        <div class="how-item">Sign-off summary</div>
+        <div class="how-item">NDA — not published anywhere</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REPORTING -->
+<section class="reporting">
+  <div class="reporting-inner">
+    <div class="reporting-left reveal">
+      <div class="section-label">Deliverable</div>
+      <h2 class="section-h" style="color:#fff">What you get<br><span style="color:rgba(255,255,255,0.25)">after every job.</span></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.4);margin-top:20px">No chasing for photos. No ambiguity. A clean report your client can approve without follow-up questions.</p>
+    </div>
+    <div class="reporting-right reveal" style="transition-delay:.15s">
+      <div class="report-items">
+        <div class="report-item">
+          <div class="report-item-icon">📸</div>
+          <div>
+            <div class="report-item-title">Before / after photos</div>
+            <div class="report-item-desc">Wide + detail shots per area, store or stand section. Status confirmed visually.</div>
+          </div>
+        </div>
+        <div class="report-item">
+          <div class="report-item-icon">⚠️</div>
+          <div>
+            <div class="report-item-title">Issues log</div>
+            <div class="report-item-desc">What happened, what we did about it, what remains open. No surprises for your client.</div>
+          </div>
+        </div>
+        <div class="report-item">
+          <div class="report-item-icon">✅</div>
+          <div>
+            <div class="report-item-title">Sign-off summary</div>
+            <div class="report-item-desc">Simple recap ready for client approval. Speeds up final sign-off and avoids endless photo requests.</div>
+          </div>
+        </div>
+        <div class="report-item">
+          <div class="report-item-icon">🔒</div>
+          <div>
+            <div class="report-item-title">NDA — white-label</div>
+            <div class="report-item-desc">We operate as your local Spain team. Projects are never published or referenced publicly.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COVERAGE -->
+<section id="coverage" class="coverage">
+  <div class="coverage-inner">
+    <div class="coverage-left reveal">
+      <div class="section-label">Coverage</div>
+      <h2 class="section-h">Spain & Portugal.<br><span>Fully covered.</span></h2>
+      <p class="section-sub">We operate nationwide across Spain and Portugal. One brief, one contact — we handle the rest wherever your project lands.</p>
+      <div class="coverage-tags" style="margin-top:40px">
+        <span class="coverage-tag">Madrid · IFEMA</span>
+        <span class="coverage-tag">Barcelona · Fira</span>
+        <span class="coverage-tag">Sevilla</span>
+        <span class="coverage-tag">Valencia</span>
+        <span class="coverage-tag">Málaga</span>
+        <span class="coverage-tag">Bilbao</span>
+        <span class="coverage-tag">Zaragoza</span>
+        <span class="coverage-tag">Alicante</span>
+        <span class="coverage-tag">Portugal</span>
+        <span class="coverage-tag">+ nationwide</span>
+      </div>
+    </div>
+    <div class="coverage-right reveal" style="transition-delay:.15s">
+      <div class="map-wrap">
+        <div id="iberia-map"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOVEOPS STORE -->
+<section id="store" class="store-section">
+  <div class="store-inner">
+    <div class="store-left reveal">
+      <div class="store-badge">New product</div>
+      <div class="section-label">MoveOps Store</div>
+      <h2 class="section-h">Track your PLV<br><span>across every store.</span></h2>
+      <p class="section-sub" style="margin-top:16px">A SaaS layer for brand marketing teams. Real-time photo evidence from every store, from the moment materials arrive to final sign-off. No app download for store staff.</p>
+      <div style="margin-top:36px;display:flex;gap:10px;flex-wrap:wrap">
+        <a href="https://store.moveops.services" class="btn-primary" target="_blank">See MoveOps Store →</a>
+        <a href="mailto:hello@moveops.services?subject=MoveOps Store demo" class="btn-secondary">Request demo</a>
+      </div>
+    </div>
+    <div class="store-right reveal" style="transition-delay:.15s">
+      <div class="mock-terminal">
+        <div class="mock-terminal-bar">
+          <div class="mock-dot" style="background:#ff5f57"></div>
+          <div class="mock-dot" style="background:#febc2e"></div>
+          <div class="mock-dot" style="background:#28c840"></div>
+          <span style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);margin-left:8px">Nike SS26 — Campaign dashboard</span>
+        </div>
+        <div class="mock-terminal-body">
+          <div class="t-row"><span class="t-muted">campaign</span><span class="t-val">Nike SS26 Primavera</span></div>
+          <div class="t-row"><span class="t-muted">status</span><span class="t-green">● LIVE</span></div>
+          <div class="t-row"><span class="t-muted">stores</span><span class="t-val">48 total</span></div>
+          <hr class="t-divider">
+          <div class="t-row"><span class="t-label">✓ El Corte Inglés Sevilla</span><span class="t-green">complete</span></div>
+          <div class="t-row"><span class="t-label">✓ Foot Locker Barcelona</span><span class="t-green">complete</span></div>
+          <div class="t-row"><span class="t-label">⚠ Sprinter Valencia</span><span class="t-amber">alert</span></div>
+          <div class="t-row"><span class="t-label">· Cortefiel Madrid</span><span class="t-muted">pending</span></div>
+          <div class="t-row"><span class="t-label">· Pull&Bear Bilbao</span><span class="t-muted">pending</span></div>
+          <hr class="t-divider">
+          <div class="t-row"><span class="t-muted">progress</span><span class="t-val">34 / 48 stores</span></div>
+          <div class="t-row"><span class="t-muted">open alerts</span><span class="t-amber">1</span></div>
+          <div class="t-row"><span class="t-muted">report</span><span class="t-green">ready to export</span></div>
+        </div>
+      </div>
+      <div class="store-features">
+        <div class="store-feat">
+          <div class="store-feat-icon">📍</div>
+          <div>
+            <div class="store-feat-title">GPS-verified photo evidence</div>
+            <div class="store-feat-desc">Every photo timestamped and geotagged. No more WhatsApp photos.</div>
+          </div>
+        </div>
+        <div class="store-feat">
+          <div class="store-feat-icon">📱</div>
+          <div>
+            <div class="store-feat-title">Zero friction for store staff</div>
+            <div class="store-feat-desc">Link on any phone. No app, no login, no training needed.</div>
+          </div>
+        </div>
+        <div class="store-feat">
+          <div class="store-feat-icon">📄</div>
+          <div>
+            <div class="store-feat-title">One-click execution report</div>
+            <div class="store-feat-desc">Export a full PDF for client sign-off in seconds.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="faq">
+  <div class="faq-header reveal">
+    <div class="section-label">FAQ</div>
+    <h2 class="section-h">Common questions.</h2>
+  </div>
+  <div class="faq-grid">
+    <div class="faq-col">
+      <div class="faq-item reveal">
+        <div class="faq-q">Do you work white-label under NDA?</div>
+        <div class="faq-a">Yes. We operate as your local Spain team. Projects are not published, referenced or disclosed. We sign NDA on request.</div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.05s">
+        <div class="faq-q">What is your minimum notice for mobilisation?</div>
+        <div class="faq-a">48h for standard retail installs. For stand builds we need at least 5 working days depending on scope. We reply within 24h to confirm feasibility.</div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.1s">
+        <div class="faq-q">Can you manage print and production?</div>
+        <div class="faq-a">Yes when needed — we coordinate with fabricators and do a pre-check on readiness before install day.</div>
+      </div>
+    </div>
+    <div class="faq-col">
+      <div class="faq-item reveal" style="transition-delay:.05s">
+        <div class="faq-q">What exactly is the deliverable?</div>
+        <div class="faq-a">Before/after photos by area or store, an issues log with resolutions, and a sign-off summary. All delivered within 24–48h of close-out.</div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.1s">
+        <div class="faq-q">Do you cover Portugal?</div>
+        <div class="faq-a">Yes, depending on scope and timing. Include Portugal in your brief and we'll confirm feasibility alongside Spain.</div>
+      </div>
+      <div class="faq-item reveal" style="transition-delay:.15s">
+        <div class="faq-q">How do you quote?</div>
+        <div class="faq-a">Send us the brief — city, scope, dates and asset list. We come back within 24h with a rough budget. No commitment needed to get a number.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-final">
+  <div class="reveal">
+    <h2 class="cta-final-h">Have a project<br><span>in Spain?</span></h2>
+  </div>
+  <div class="cta-final-right reveal" style="transition-delay:.1s">
+    <p class="cta-final-sub">Send us the brief — city, scope and dates. We reply within 24h with feasibility and a rough budget. No commitment needed.</p>
+    <a href="mailto:hello@moveops.services?subject=Project brief" class="btn-white">Send brief → <span style="opacity:.4">hello@moveops.services</span></a>
+    <a href="tel:+34" class="btn-ghost">Or call us directly ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    <img src="logo-mark.png" alt="MoveOps" style="width:28px;height:28px;object-fit:contain;border-radius:3px">
+    <span class="footer-name">MOVEOPS — SPAIN & PORTUGAL</span>
+  </div>
+  <div class="footer-links">
+    <a href="#services">Services</a>
+    <a href="#how">Process</a>
+    <a href="#store">MoveOps Store</a>
+    <a href="mailto:hello@moveops.services">hello@moveops.services</a>
+  </div>
+  <div class="footer-copy">© 2026</div>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 20);
+  document.querySelectorAll('.reveal').forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.88) el.classList.add('visible');
+  });
+});
+setTimeout(() => document.querySelectorAll('.reveal').forEach(el => {
+  if (el.getBoundingClientRect().top < window.innerHeight * 0.88) el.classList.add('visible');
+}), 100);
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
+<script>
+// Render Iberia map using D3 + Natural Earth data
+(async function() {
+  const container = document.getElementById('iberia-map');
+  const W = container.offsetWidth || 420;
+  const H = Math.round(W * 0.88);
+
+  const svg = d3.select('#iberia-map')
+    .append('svg')
+    .attr('viewBox', `0 0 ${W} ${H}`)
+    .attr('width', '100%')
+    .style('display', 'block');
+
+  // Fetch world topojson from CDN
+  let world;
+  try {
+    world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
+  } catch(e) {
+    // fallback: show text
+    svg.append('text').attr('x', W/2).attr('y', H/2)
+      .attr('text-anchor','middle').attr('font-family','DM Mono')
+      .attr('font-size', 11).attr('fill','#999').text('Map unavailable offline');
+    return;
+  }
+
+  const countries = topojson.feature(world, world.objects.countries);
+
+  // Spain = 724, Portugal = 620
+  const iberia = {
+    type: 'FeatureCollection',
+    features: countries.features.filter(d => ['724','620'].includes(d.id + ''))
+  };
+
+  const projection = d3.geoMercator().fitExtent([[20,20],[W-20,H-20]], iberia);
+  const path = d3.geoPath().projection(projection);
+
+  // Draw countries
+  svg.selectAll('path.country')
+    .data(iberia.features)
+    .join('path')
+    .attr('class', 'country')
+    .attr('d', path)
+    .attr('fill', 'rgba(0,0,0,0.05)')
+    .attr('stroke', '#0A0A0A')
+    .attr('stroke-width', 1.5)
+    .attr('stroke-linejoin', 'round');
+
+  // City data [name, lon, lat, primary]
+  const cities = [
+    ['MADRID',   -3.70,  40.42, true ],
+    ['BCN',       2.17,  41.38, true ],
+    ['SVQ',      -5.99,  37.39, true ],
+    ['VLC',      -0.38,  39.47, false],
+    ['BIO',      -2.93,  43.26, false],
+    ['AGP',      -4.42,  36.72, false],
+    ['ZGZ',      -0.89,  41.65, false],
+    ['LIS',      -9.14,  38.72, false],
+  ];
+
+  cities.forEach(([name, lon, lat, primary]) => {
+    const [x, y] = projection([lon, lat]);
+    const g = svg.append('g');
+
+    // Pulse ring for primary cities
+    if (primary) {
+      g.append('circle')
+        .attr('cx', x).attr('cy', y)
+        .attr('r', 10)
+        .attr('fill', 'rgba(0,0,0,0.06)')
+        .attr('stroke', 'none');
+    }
+
+    g.append('circle')
+      .attr('cx', x).attr('cy', y)
+      .attr('r', primary ? 5 : 3.5)
+      .attr('fill', '#0A0A0A')
+      .attr('opacity', primary ? 1 : 0.55);
+
+    g.append('text')
+      .attr('x', x)
+      .attr('y', y - (primary ? 10 : 8))
+      .attr('text-anchor', 'middle')
+      .attr('font-family', 'DM Mono, monospace')
+      .attr('font-size', primary ? 9 : 7.5)
+      .attr('font-weight', primary ? '500' : '400')
+      .attr('fill', primary ? '#0A0A0A' : '#888880')
+      .attr('letter-spacing', '1')
+      .text(name);
+  });
+
+  // Canary Islands inset note
+  svg.append('rect')
+    .attr('x', 12).attr('y', H - 34)
+    .attr('width', 72).attr('height', 22)
+    .attr('rx', 3)
+    .attr('fill', 'none')
+    .attr('stroke', '#DDDDD8')
+    .attr('stroke-width', 1)
+    .attr('stroke-dasharray', '3,2');
+
+  svg.append('text')
+    .attr('x', 48).attr('y', H - 19)
+    .attr('text-anchor', 'middle')
+    .attr('font-family', 'DM Mono, monospace')
+    .attr('font-size', 7).attr('fill', '#999993')
+    .attr('letter-spacing', '1')
+    .text('+ CANARIAS');
+
+})();
+</script>
+
+<script>
+// Mobile menu — fully self-contained, no CSS variable dependencies
+function toggleMenu() {
+  const b = document.getElementById('burger');
+  const overlay = document.getElementById('mobile-overlay');
+  const isOpen = overlay.style.display === 'flex';
+  if (isOpen) {
+    closeMenu();
+  } else {
+    b.classList.add('open');
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+}
+function closeMenu() {
+  document.getElementById('burger').classList.remove('open');
+  document.getElementById('mobile-overlay').style.display = 'none';
+  document.body.style.overflow = '';
+}
+</script>
+
+<div id="mobile-overlay" style="
+  display: none;
+  position: fixed;
+  top: 60px; left: 0; right: 0; bottom: 0;
+  background-color: #ffffff;
+  z-index: 9999;
+  flex-direction: column;
+  align-items: stretch;
+  border-top: 2px solid #0A0A0A;
+  overflow-y: auto;
+">
+  <a href="#services" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#0A0A0A;text-decoration:none;border-bottom:1px solid #EEEEEA;background:#ffffff;">Services</a>
+  <a href="#how" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#0A0A0A;text-decoration:none;border-bottom:1px solid #EEEEEA;background:#ffffff;">How it works</a>
+  <a href="#store" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#0A0A0A;text-decoration:none;border-bottom:1px solid #EEEEEA;background:#ffffff;">MoveOps Store</a>
+  <a href="#faq" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#0A0A0A;text-decoration:none;border-bottom:1px solid #EEEEEA;background:#ffffff;">FAQ</a>
+  <a href="mailto:hello@moveops.services" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;background:#0A0A0A;margin:24px 20px;border-radius:6px;text-align:center;">hello@moveops.services →</a>
+</div>
+
+</body>
+</html>
