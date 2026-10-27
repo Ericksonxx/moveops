@@ -3,932 +3,683 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MoveOps — Spain & Portugal execution partner</title>
-  <meta name="description" content="White-label retail installation, PLV and stand build support across Spain and Portugal. Photo reporting, 24–48h mobilisation, NDA delivery for agencies.">
+  <title>MoveOps — Installation & site operations across Europe</title>
+  <meta name="description" content="Site surveys, permits, retail installations and stand builds across Europe. One team from survey to close-out report. White-label, under NDA.">
+  <link rel="icon" href="logo-mark.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --black:  #0A0A0A;
-      --ink:    #1A1A1A;
-      --mid:    #555550;
-      --muted:  #999993;
-      --border: #DDDDD8;
-      --border2:#EEEEEA;
-      --surface:#F7F7F5;
-      --white:  #FFFFFF;
+      --black: #0A0A0A;
+      --ink:   #161616;
+      --mid:   #5C5C5C;
+      --muted: #8E8E8E;
+      --line:  #E4E4E4;
+      --soft:  #F4F4F4;
+      --white: #FFFFFF;
+      --gutter: clamp(20px, 5vw, 72px);
+      --sans: 'Inter Tight', system-ui, -apple-system, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
     }
-    html { scroll-behavior: smooth; }
-    body { background: var(--white); color: var(--ink); font-family: 'Syne', sans-serif; overflow-x: hidden; }
-    .inner { max-width: 1280px; margin: 0 auto; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body { background: var(--white); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: 64px; padding: 0 clamp(24px, 5vw, 80px);
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(255,255,255,0.95); backdrop-filter: blur(12px);
-      border-bottom: 1px solid transparent; transition: border-color 0.2s;
-    }
-    nav.scrolled { border-bottom-color: var(--border); }
-    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-    .nav-mark {
-      width: 28px; height: 28px; background: var(--black); border-radius: 4px;
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-    }
-    .nav-mark svg { width: 13px; height: 13px; fill: none; stroke: #fff; stroke-width: 2.2; }
-    .nav-wordmark { font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: var(--black); letter-spacing: 0.5px; }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
-    .nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--ink); }
-    .nav-right { display: flex; align-items: center; gap: 10px; }
-    .btn-nav { background: var(--black); color: #fff; font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 600; padding: 9px 20px; border-radius: 5px; border: none; cursor: pointer; transition: opacity 0.15s; text-decoration: none; }
-    .btn-nav:hover { opacity: 0.8; }
-    .btn-nav.outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
-    .btn-nav.outline:hover { border-color: var(--ink); opacity: 1; }
+    /* ── type ── */
+    .eyebrow { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+    h1, h2, h3 { color: var(--black); font-weight: 600; letter-spacing: -0.03em; }
+    h2 { font-size: clamp(32px, 4vw, 52px); line-height: 1.05; }
+    h2 .dim, h1 .dim { color: var(--muted); }
+    .lead { font-size: 18px; color: var(--mid); max-width: 560px; }
 
-    /* ── HERO ── */
-    .hero {
-      padding-top: 60px;
-      min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
-      border-bottom: 1px solid var(--border);
-    }
-    .hero-left {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 100px clamp(32px, 6vw, 96px) 100px clamp(40px, 7vw, 96px);
-      border-right: 1px solid var(--border);
-    }
-    .hero-right {
-      background: var(--black);
-      display: flex; flex-direction: column; justify-content: space-between;
-      padding: 80px clamp(32px, 5vw, 72px);
-      position: relative; overflow: hidden;
-    }
+    /* ── buttons ── */
+    .btn { display: inline-flex; align-items: center; gap: 10px; font-family: var(--sans); font-size: 15px; font-weight: 500; padding: 14px 24px; border-radius: 999px; text-decoration: none; cursor: pointer; border: 1px solid var(--black); transition: background .15s, color .15s; }
+    .btn-dark { background: var(--black); color: var(--white); }
+    .btn-dark:hover { background: #333; border-color: #333; }
+    .btn-line { background: transparent; color: var(--black); border-color: var(--line); }
+    .btn-line:hover { border-color: var(--black); }
+    .btn-light { background: var(--white); color: var(--black); border-color: var(--white); }
+    .btn-light:hover { background: #ddd; border-color: #ddd; }
 
-    .hero-tag {
-      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--muted);
-      margin-bottom: 28px; display: flex; align-items: center; gap: 10px;
-      opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
-    }
-    .hero-tag::before { content: ''; width: 20px; height: 1px; background: var(--border); }
+    /* ── nav ── */
+    nav { position: fixed; inset: 0 0 auto 0; z-index: 50; background: rgba(255,255,255,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .2s; }
+    nav.scrolled { border-bottom-color: var(--line); }
+    .nav-in { height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .nav-logo img { height: 30px; width: auto; }
+    .nav-links { display: flex; gap: 32px; }
+    .nav-links a { font-size: 14px; color: var(--mid); text-decoration: none; transition: color .15s; }
+    .nav-links a:hover { color: var(--black); }
+    .nav-cta { padding: 10px 20px; font-size: 14px; }
+    .burger { display: none; width: 40px; height: 40px; background: none; border: 0; cursor: pointer; flex-direction: column; justify-content: center; align-items: center; gap: 6px; }
+    .burger span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: transform .2s, opacity .2s; }
+    nav.open .burger span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    nav.open .burger span:nth-child(2) { opacity: 0; }
+    nav.open .burger span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+    .mobile-menu { display: none; }
 
-    .hero-h1 {
-      font-size: clamp(48px, 5.5vw, 76px); font-weight: 800;
-      line-height: 1.0; letter-spacing: -1.5px; color: var(--black);
-      margin-bottom: 40px;
-      opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
-    }
-    .hero-h1 span { color: var(--muted); font-weight: 400; }
+    /* ── illustrations & icons ── */
+    .illus { border: 1px solid var(--line); border-radius: 6px; overflow: hidden; background: var(--white); }
+    .illus svg { display: block; width: 100%; height: auto; }
+    .icon { width: 28px; height: 28px; fill: none; stroke: var(--black); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
 
-    .hero-sub {
-      font-size: 16px; font-weight: 400; line-height: 1.7; color: var(--mid);
-      max-width: 440px; margin-bottom: 56px;
-      opacity: 0; animation: fadeUp 0.6s ease 0.35s forwards;
-    }
+    /* ── hero ── */
+    .hero { padding: 148px 0 72px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 5vw, 80px); align-items: end; }
+    .hero h1 { font-size: clamp(44px, 6.4vw, 88px); line-height: .98; letter-spacing: -0.045em; margin-bottom: 28px; }
+    .hero .lead { margin-bottom: 40px; }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    .hero-actions {
-      display: flex; gap: 10px; flex-wrap: wrap;
-      opacity: 0; animation: fadeUp 0.6s ease 0.45s forwards;
-    }
-    .btn-primary {
-      background: var(--black); color: #fff;
-      font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
-      padding: 14px 28px; border-radius: 5px; border: none; cursor: pointer;
-      transition: opacity 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-    }
-    .btn-primary:hover { opacity: 0.8; }
-    .btn-secondary {
-      background: transparent; color: var(--ink);
-      font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 500;
-      padding: 14px 28px; border-radius: 5px; border: 1.5px solid var(--border);
-      cursor: pointer; transition: border-color 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
-    }
-    .btn-secondary:hover { border-color: var(--ink); }
+    .facts { margin-top: 72px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+    .fact { padding: 28px 24px 0 0; }
+    .fact + .fact { padding-left: 24px; border-left: 1px solid var(--line); }
+    .fact-val { font-size: clamp(26px, 2.6vw, 34px); font-weight: 600; letter-spacing: -0.03em; color: var(--black); line-height: 1.1; }
+    .fact-label { font-size: 14px; color: var(--muted); margin-top: 6px; }
 
-    /* hero stats */
-    .hero-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      border-top: 1px solid rgba(255,255,255,0.08);
-      margin-top: auto;
-      opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards;
-    }
-    .hero-stat { padding: 28px 0; border-right: 1px solid rgba(255,255,255,0.08); }
-    .hero-stat:last-child { border-right: none; padding-left: 24px; }
-    .hero-stat:not(:first-child) { padding-left: 24px; }
-    .hero-stat-val { font-size: 32px; font-weight: 800; color: #fff; letter-spacing: -1px; margin-bottom: 4px; }
-    .hero-stat-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    /* ── sections ── */
+    section.block { padding: clamp(80px, 10vw, 128px) 0; border-top: 1px solid var(--line); }
+    .block-head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 56px; }
+    .block-head .lead { justify-self: end; }
 
-    /* hero right content */
-    .hero-right-top { flex: 1; display: flex; flex-direction: column; justify-content: center; }
-    .hero-right-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 20px; }
-    .hero-checklist { display: flex; flex-direction: column; gap: 20px; }
-    .hero-check { display: flex; align-items: flex-start; gap: 14px; }
-    .check-box { width: 20px; height: 20px; border: 1.5px solid rgba(255,255,255,0.15); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-    .check-box.done { background: #fff; border-color: #fff; }
-    .check-box.done::after { content: ''; width: 5px; height: 9px; border-right: 2px solid var(--black); border-bottom: 2px solid var(--black); transform: rotate(45deg) translate(-1px, -1px); }
-    .check-box.pending { opacity: 0.3; }
-    .check-text { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75); line-height: 1.4; }
-    .check-sub { font-size: 12px; color: rgba(255,255,255,0.3); margin-top: 2px; font-weight: 400; }
+    /* services */
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--black); }
+    .svc { padding: 32px 28px 40px 0; border-bottom: 1px solid var(--line); }
+    .svc:not(:nth-child(3n+1)) { padding-left: 28px; border-left: 1px solid var(--line); }
+    .svc-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 36px; }
+    .svc-num { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+    .svc h3 { font-size: 22px; margin-bottom: 10px; }
+    .svc p { font-size: 15px; color: var(--mid); }
 
-    /* hero grid pattern */
-    .hero-grid-pattern {
-      position: absolute; inset: 0; pointer-events: none;
-      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
+    /* process */
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: step; }
+    .step { background: var(--soft); border-radius: 6px; padding: 28px 24px 32px; }
+    .step-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 48px; }
+    .step-num { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+    .step-time { font-family: var(--mono); font-size: 11px; color: var(--black); border: 1px solid var(--line); background: var(--white); border-radius: 999px; padding: 3px 10px; }
+    .step h3 { font-size: 20px; margin-bottom: 8px; }
+    .step p { font-size: 15px; color: var(--mid); }
 
-    /* ── SHARED ── */
-    .section-label {
-      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 20px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .section-label::before { content: ''; width: 16px; height: 1px; background: var(--border); }
-    .section-h {
-      font-size: clamp(32px, 3.5vw, 48px); font-weight: 800;
-      letter-spacing: -1px; line-height: 1.05; color: var(--black); margin-bottom: 16px;
-    }
-    .section-h span { color: var(--muted); font-weight: 400; }
-    .section-sub { font-size: 16px; color: var(--mid); line-height: 1.8; font-weight: 400; max-width: 520px; margin-top: 12px; }
+    /* europe map */
+    .map { margin-top: 40px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+    .map svg { display: block; width: 100%; height: auto; }
 
-    /* ── SERVICES ── */
-    .services { border-bottom: 1px solid var(--border); }
-    .services-header { padding: 100px clamp(32px, 7vw, 100px) 64px; border-bottom: 1px solid var(--border); }
-    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .service-col { padding: 64px clamp(28px, 4vw, 56px); border-right: 1px solid var(--border); }
-    .service-col:last-child { border-right: none; }
-    .service-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--border); letter-spacing: 2px; margin-bottom: 24px; }
-    .service-icon { font-size: 24px; margin-bottom: 16px; }
-    .service-title { font-size: 19px; font-weight: 700; color: var(--black); margin-bottom: 14px; letter-spacing: -0.3px; }
-    .service-desc { font-size: 14px; color: var(--mid); line-height: 1.7; font-weight: 400; margin-bottom: 28px; }
-    .service-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-    .tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; padding: 4px 10px; border-radius: 3px; background: var(--surface); color: var(--mid); border: 1px solid var(--border2); }
+    /* coverage */
+    .cov { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(40px, 6vw, 96px); }
+    .cov-list { list-style: none; border-top: 1px solid var(--black); }
+    .cov-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 17px; color: var(--black); }
+    .cov-list li span { font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: right; }
+    .cov-note { margin-top: 24px; font-size: 15px; color: var(--mid); }
+    .cov-note strong { color: var(--black); font-weight: 600; }
 
-    /* ── HOW ── */
-    .how { border-bottom: 1px solid var(--border); }
-    .how-header { padding: 100px clamp(32px, 7vw, 100px) 64px; border-bottom: 1px solid var(--border); }
-    .how-steps { display: grid; grid-template-columns: repeat(3, 1fr); }
-    .how-step { padding: 64px clamp(28px, 4vw, 56px); border-right: 1px solid var(--border); position: relative; }
-    .how-step:last-child { border-right: none; }
-    .how-step-num { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--border); letter-spacing: 2px; margin-bottom: 20px; }
-    .how-step-title { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 14px; letter-spacing: -0.3px; }
-    .how-step-desc { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 400; }
-    .how-step-items { margin-top: 28px; display: flex; flex-direction: column; gap: 12px; }
-    .how-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--mid); font-weight: 400; }
-    .how-item::before { content: '—'; color: var(--border); flex-shrink: 0; font-family: 'DM Mono', monospace; }
+    /* standards (dark) */
+    .dark { background: var(--black); color: var(--white); border-top: 0 !important; }
+    .dark h2 { color: var(--white); }
+    .dark h2 .dim { color: #6E6E6E; }
+    .dark .eyebrow { color: #7A7A7A; }
+    .std { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid #2A2A2A; }
+    .std-item { padding: 32px 28px 0 0; }
+    .std-item + .std-item { padding-left: 28px; border-left: 1px solid #2A2A2A; }
+    .std-item h3 { color: var(--white); font-size: 18px; margin-bottom: 10px; }
+    .std-item p { color: #9A9A9A; font-size: 15px; }
 
-    /* ── REPORTING ── */
-    .reporting { background: var(--black); border-bottom: 1px solid #222; }
-    .reporting-inner { display: grid; grid-template-columns: 1fr 1fr; }
-    .reporting-left { padding: 100px clamp(32px, 7vw, 100px); border-right: 1px solid rgba(255,255,255,0.07); display: flex; flex-direction: column; justify-content: center; }
-    .reporting-right { padding: 100px clamp(32px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; }
-    .reporting-left .section-label { color: rgba(255,255,255,0.25); }
-    .reporting-left .section-label::before { background: rgba(255,255,255,0.1); }
-    .reporting-left .section-h { color: #fff; }
-    .reporting-left .section-sub { color: rgba(255,255,255,0.4); }
-    .report-items { display: flex; flex-direction: column; gap: 0; }
-    .report-item { display: flex; align-items: flex-start; gap: 24px; padding: 32px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .report-item:first-child { border-top: 1px solid rgba(255,255,255,0.06); }
-    .report-item-icon { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
-    .report-item-title { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 4px; }
-    .report-item-desc { font-size: 13px; color: rgba(255,255,255,0.35); line-height: 1.5; font-weight: 400; }
+    /* faq */
+    .faq-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: clamp(40px, 6vw, 96px); }
+    .faq-list { border-top: 1px solid var(--black); }
+    details { border-bottom: 1px solid var(--line); }
+    summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; gap: 24px; padding: 22px 0; font-size: 18px; font-weight: 500; color: var(--black); }
+    summary::-webkit-details-marker { display: none; }
+    summary::after { content: '+'; font-family: var(--mono); font-weight: 400; color: var(--muted); transition: transform .2s; }
+    details[open] summary::after { transform: rotate(45deg); }
+    details p { padding: 0 48px 24px 0; color: var(--mid); font-size: 16px; }
 
-    /* ── COVERAGE ── */
-    .coverage { border-bottom: 1px solid var(--border); }
-    .coverage-inner { display: grid; grid-template-columns: 1fr 1fr; }
-    .coverage-left { padding: 100px clamp(32px, 7vw, 100px); border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
-    .coverage-right { padding: 60px clamp(32px, 6vw, 80px); display: flex; align-items: center; justify-content: center; background: var(--surface); }
-    .map-wrap { position: relative; width: 100%; max-width: 460px; }
-    .map-wrap svg.map-outline { width: 100%; height: auto; display: block; }
-    .map-pin { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 3px; }
-    .map-pin-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--black); flex-shrink: 0; box-shadow: 0 0 0 3px rgba(0,0,0,0.1); }
-    .map-pin-label { font-family: 'DM Mono', monospace; font-size: 8px; letter-spacing: 1.5px; color: var(--black); white-space: nowrap; background: rgba(247,247,245,0.9); padding: 1px 4px; border-radius: 2px; }
-    .coverage-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 40px; }
-    .coverage-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 1px; padding: 5px 12px; border: 1px solid var(--border); border-radius: 3px; color: var(--mid); background: var(--white); }
+    /* contact */
+    .contact { display: grid; grid-template-columns: 1fr 1.4fr; gap: clamp(40px, 6vw, 96px); }
+    .contact-side p { margin-top: 20px; }
+    .email-cta { display: flex; flex-direction: column; gap: 6px; padding: 24px 28px; border-radius: 6px; background: var(--black); color: var(--white); text-decoration: none; transition: background .15s; }
+    .email-cta:hover { background: #2A2A2A; }
+    .email-cta-label { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #9A9A9A; }
+    .email-cta-addr { font-size: clamp(20px, 2.4vw, 28px); font-weight: 600; letter-spacing: -0.02em; overflow-wrap: anywhere; }
+    .or-line { display: flex; align-items: center; gap: 16px; margin: 32px 0; font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+    .or-line::before, .or-line::after { content: ''; flex: 1; height: 1px; background: var(--line); }
 
-    /* ── STORE PRODUCT ── */
-    .store-section { background: var(--surface); border-bottom: 1px solid var(--border); }
-    .store-inner { display: grid; grid-template-columns: 1fr 1fr; }
-    .store-left { padding: 100px clamp(32px, 7vw, 100px); border-right: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; }
-    .store-right { padding: 100px clamp(32px, 7vw, 100px); display: flex; flex-direction: column; justify-content: center; }
-    .store-badge {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 2px;
-      text-transform: uppercase; color: var(--mid);
-      border: 1px solid var(--border); border-radius: 4px;
-      padding: 6px 12px; margin-bottom: 24px; width: fit-content;
-    }
-    .store-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--black); }
-    .store-features { display: flex; flex-direction: column; gap: 0; margin-top: 36px; }
-    .store-feat { display: flex; align-items: flex-start; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--border2); }
-    .store-feat:first-child { border-top: 1px solid var(--border2); }
-    .store-feat-icon { font-size: 18px; flex-shrink: 0; width: 28px; text-align: center; margin-top: 2px; }
-    .store-feat-title { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 3px; }
-    .store-feat-desc { font-size: 13px; color: var(--mid); line-height: 1.5; font-weight: 400; }
+    form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+    .field { display: flex; flex-direction: column; gap: 8px; }
+    .field.full { grid-column: 1 / -1; }
+    label { font-size: 13px; font-weight: 500; color: var(--black); }
+    label .opt { color: var(--muted); font-weight: 400; }
+    input, select, textarea { width: 100%; font: inherit; font-size: 16px; color: var(--black); background: var(--white); border: 1px solid var(--line); border-radius: 6px; padding: 13px 14px; transition: border-color .15s; appearance: none; -webkit-appearance: none; }
+    select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%230A0A0A' stroke-width='1.5'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+    textarea { min-height: 140px; resize: vertical; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--black); }
+    input:user-invalid, textarea:user-invalid { border-color: #B00020; }
+    .hp { position: absolute; left: -9999px; }
+    .form-foot { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-top: 4px; }
+    .form-foot small { font-size: 13px; color: var(--muted); max-width: 320px; }
+    .form-foot .btn[disabled] { opacity: .5; cursor: wait; }
+    .form-msg { grid-column: 1 / -1; display: none; padding: 16px 18px; border-radius: 6px; font-size: 15px; }
+    .form-msg.ok { display: block; background: var(--black); color: var(--white); }
+    .form-msg.err { display: block; border: 1px solid #B00020; color: #B00020; }
 
-    /* mock terminal */
-    .mock-terminal {
-      background: var(--black); border-radius: 8px; overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .mock-terminal-bar { background: #1a1a1a; padding: 12px 16px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); }
-    .mock-dot { width: 10px; height: 10px; border-radius: 50%; }
-    .mock-terminal-body { padding: 20px; font-family: 'DM Mono', monospace; font-size: 12px; line-height: 1.8; }
-    .t-muted { color: rgba(255,255,255,0.2); }
-    .t-label { color: rgba(255,255,255,0.35); }
-    .t-val { color: rgba(255,255,255,0.75); }
-    .t-green { color: #4CAF82; }
-    .t-amber { color: #C9A84C; }
-    .t-row { display: flex; justify-content: space-between; padding: 2px 0; }
-    .t-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 8px 0; }
+    /* footer */
+    footer { background: var(--black); color: #8A8A8A; padding: 56px 0 40px; font-size: 14px; }
+    .foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 32px; flex-wrap: wrap; }
+    .foot img { height: 34px; width: auto; filter: invert(1); }
+    .foot-links { display: flex; gap: 28px; flex-wrap: wrap; }
+    .foot-links a { text-decoration: none; color: #BDBDBD; }
+    .foot-links a:hover { color: var(--white); }
+    .foot-base { margin-top: 48px; padding-top: 20px; border-top: 1px solid #222; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-family: var(--mono); font-size: 12px; }
 
-    /* ── FAQ ── */
-    .faq { border-bottom: 1px solid var(--border); }
-    .faq-header { padding: 100px clamp(32px, 7vw, 100px) 64px; border-bottom: 1px solid var(--border); }
-    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; }
-    .faq-col { padding: 0; }
-    .faq-col:first-child { border-right: 1px solid var(--border); }
-    .faq-item { padding: 40px clamp(28px, 5vw, 60px); border-bottom: 1px solid var(--border2); }
-    .faq-q { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 10px; letter-spacing: -0.2px; }
-    .faq-a { font-size: 14px; color: var(--mid); line-height: 1.65; font-weight: 400; }
+    /* reveal */
+    .reveal { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
 
-    /* ── CTA FINAL ── */
-    .cta-final {
-      background: var(--black);
-      padding: 120px clamp(32px, 7vw, 100px);
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 80px; align-items: center;
-      border-bottom: 1px solid #222;
-    }
-    .cta-final-h { font-size: clamp(36px, 4vw, 56px); font-weight: 800; color: #fff; letter-spacing: -1.5px; line-height: 1.05; }
-    .cta-final-h span { color: rgba(255,255,255,0.25); font-weight: 400; }
-    .cta-final-right { display: flex; flex-direction: column; gap: 16px; }
-    .cta-final-sub { font-size: 15px; color: rgba(255,255,255,0.4); line-height: 1.7; font-weight: 400; margin-bottom: 8px; }
-    .btn-white { background: #fff; color: var(--black); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; padding: 16px 32px; border-radius: 5px; border: none; cursor: pointer; transition: opacity 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; width: fit-content; }
-    .btn-white:hover { opacity: 0.88; }
-    .btn-ghost { background: transparent; color: rgba(255,255,255,0.5); font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 500; padding: 16px 0; border: none; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; width: fit-content; transition: color 0.15s; }
-    .btn-ghost:hover { color: #fff; }
-
-    /* ── FOOTER ── */
-    footer {
-      padding: 40px clamp(24px, 5vw, 80px);
-      display: flex; align-items: center; justify-content: space-between;
-      border-top: 1px solid var(--border);
-    }
-    .footer-left { display: flex; align-items: center; gap: 16px; }
-    .footer-mark { width: 24px; height: 24px; background: var(--black); border-radius: 4px; display: flex; align-items: center; justify-content: center; }
-    .footer-mark svg { width: 11px; height: 11px; fill: none; stroke: #fff; stroke-width: 2.2; }
-    .footer-name { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; color: var(--mid); letter-spacing: 1px; }
-    .footer-links { display: flex; gap: 28px; }
-    .footer-links a { font-size: 12px; color: var(--muted); text-decoration: none; font-weight: 500; transition: color 0.15s; }
-    .footer-links a:hover { color: var(--ink); }
-    .footer-copy { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--muted); }
-
-
-    /* ── LOGO IMAGES ── */
-    .nav-logo-img { width: 30px; height: 30px; object-fit: contain; border-radius: 3px; flex-shrink: 0; }
-    .nav-wordmark-img { height: 18px; width: auto; object-fit: contain; }
-
-    /* ── BURGER ── */
-    .burger {
-      display: none; flex-direction: column; justify-content: center; gap: 5px;
-      width: 36px; height: 36px; background: none; border: none; cursor: pointer; padding: 4px;
-    }
-    .burger span { display: block; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.25s; transform-origin: center; }
-    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      /* NAV */
-      nav { padding: 0 24px; }
+    /* ── responsive ── */
+    @media (max-width: 960px) {
+      .nav-links, .nav-cta { display: none; }
       .burger { display: flex; }
-      .desktop-only { display: none !important; }
-      .nav-links {
-        position: fixed; top: 60px; left: 0; right: 0; bottom: 0;
-        background: #ffffff; z-index: 99;
-        flex-direction: column; align-items: flex-start; justify-content: flex-start;
-        gap: 0; padding: 8px 0;
-        transform: translateX(100%); transition: transform 0.3s ease;
-        border-top: 1px solid #DDDDD8;
-        display: flex !important;
-        box-shadow: -4px 0 24px rgba(0,0,0,0.08);
-      }
-      .nav-links.open { transform: translateX(0); }
-      .nav-links a {
-        font-size: 20px; font-weight: 700; color: #0A0A0A !important;
-        padding: 20px 32px; width: 100%; border-bottom: 1px solid #EEEEEA;
-        text-decoration: none; display: block;
-        background: #ffffff;
-      }
-      .nav-links a:hover { background: #F7F7F5; }
+      .mobile-menu { position: absolute; top: 100%; left: 0; right: 0; height: calc(100vh - 68px); height: calc(100dvh - 68px); background: var(--white); padding: 8px var(--gutter) 32px; flex-direction: column; overflow-y: auto; }
+      nav.open .mobile-menu { display: flex; }
+      nav.open { background: var(--white); border-bottom-color: var(--line); }
+      .mobile-menu a { padding: 18px 0; font-size: 22px; font-weight: 500; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--line); }
+      .mobile-menu .btn { margin-top: 28px; justify-content: center; border-bottom: 1px solid var(--black); font-size: 16px; color: var(--white); }
 
-      /* HERO */
-      .hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-left { padding: 60px 28px 48px; border-right: none; border-bottom: 1px solid var(--border); }
-      .hero-right { padding: 40px 28px; min-height: 400px; }
-      .hero-h1 { font-size: clamp(40px, 9vw, 60px); }
-      .hero-stats { grid-template-columns: repeat(3,1fr); }
-
-      /* SECTIONS — all 2-col grids become 1-col */
-      .services-grid,
-      .how-steps { grid-template-columns: 1fr; }
-      .service-col,
-      .how-step { border-right: none; border-bottom: 1px solid var(--border); }
-      .service-col:last-child,
-      .how-step:last-child { border-bottom: none; }
-      .services-header,
-      .how-header,
-      .faq-header { padding: 56px 28px 40px; }
-
-      .reporting-inner,
-      .coverage-inner,
-      .store-inner,
-      .cta-final { grid-template-columns: 1fr; }
-      .reporting-left,
-      .reporting-right { padding: 56px 28px; border-right: none; }
-      .reporting-left { border-bottom: 1px solid rgba(255,255,255,0.07); }
-      .coverage-left { padding: 56px 28px; border-right: none; border-bottom: 1px solid var(--border); }
-      .coverage-right { padding: 40px 28px; }
-      .store-left { padding: 56px 28px; border-right: none; border-bottom: 1px solid var(--border); }
-      .store-right { padding: 40px 28px; }
-
-      .faq-grid { grid-template-columns: 1fr; }
-      .faq-col:first-child { border-right: none; }
-      .faq-item { padding: 28px 28px; }
-
-      .cta-final { padding: 64px 28px; gap: 40px; }
-      .cta-final-h { font-size: clamp(32px, 8vw, 48px); }
-
-      footer { padding: 24px 28px; flex-wrap: wrap; gap: 16px; }
-      .footer-links { gap: 16px; flex-wrap: wrap; }
-
-      .map-wrap { max-width: 320px; margin: 0 auto; }
+      .hero { padding-top: 116px; }
+      .hero-grid, .block-head, .cov, .faq-grid, .contact { grid-template-columns: 1fr; }
+      .block-head .lead { justify-self: start; }
+      .facts { grid-template-columns: 1fr 1fr; margin-top: 48px; }
+      .fact { padding: 24px 16px 24px 0 !important; border-left: 0 !important; border-bottom: 1px solid var(--line); }
+      .fact:nth-child(even) { padding-left: 16px !important; border-left: 1px solid var(--line) !important; }
+      .services { grid-template-columns: 1fr 1fr; }
+      .svc, .svc:not(:nth-child(3n+1)) { padding: 28px 20px 32px 0; border-left: 0; }
+      .svc:nth-child(even) { padding-left: 20px; border-left: 1px solid var(--line); }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .std { grid-template-columns: 1fr 1fr; }
+      .std-item, .std-item + .std-item { padding: 28px 20px 28px 0; border-left: 0; border-bottom: 1px solid #2A2A2A; }
+      .std-item:nth-child(even) { padding-left: 20px; border-left: 1px solid #2A2A2A; }
     }
-
     @media (max-width: 600px) {
-      .hero-left { padding: 48px 20px 40px; }
-      .hero-right { padding: 32px 20px; }
-      .hero-stats { grid-template-columns: repeat(3,1fr); gap: 0; }
-      .hero-stat { padding: 20px 0; }
-      .hero-stat:not(:first-child) { padding-left: 12px; }
-      .hero-stat-val { font-size: 22px; }
-      .services-header, .how-header, .faq-header { padding: 48px 20px 32px; }
-      .service-col, .how-step { padding: 36px 20px; }
-      .reporting-left, .reporting-right { padding: 48px 20px; }
-      .coverage-left { padding: 48px 20px; }
-      .coverage-right { padding: 32px 20px; }
-      .store-left, .store-right { padding: 48px 20px; }
-      .faq-item { padding: 24px 20px; }
-      .cta-final { padding: 52px 20px; }
-      footer { padding: 20px 20px; }
-      .coverage-tags { gap: 6px; }
+      .services, .steps, .std { grid-template-columns: 1fr; }
+      .svc, .svc:nth-child(even), .std-item, .std-item:nth-child(even) { padding-left: 0; border-left: 0; }
+      .svc-top { margin-bottom: 20px; }
+      .step-top { margin-bottom: 28px; }
+      form { grid-template-columns: 1fr; }
+      details p { padding-right: 0; }
+      .btn { padding: 14px 20px; }
     }
-
-    /* ── ANIMATIONS ── */
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav id="nav">
-  <a class="nav-logo" href="#">
-    <img src="logo-mark.png" alt="MoveOps" class="nav-logo-img">
-    <img src="logo-text.png" alt="MoveOps" class="nav-wordmark-img">
-  </a>
-  <div class="nav-links">
+  <div class="wrap nav-in">
+    <a class="nav-logo" href="#top" aria-label="MoveOps home"><img src="logo-wordmark.png" alt="MoveOps Services"></a>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a href="#contact" class="btn btn-dark nav-cta">Request a quote</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
     <a href="#services">Services</a>
-    <a href="#how">How it works</a>
-    <a href="#store">MoveOps Store</a>
+    <a href="#process">Process</a>
+    <a href="#coverage">Coverage</a>
     <a href="#faq">FAQ</a>
-  </div>
-  <div class="nav-links" id="nav-links">
-    <a href="#services" onclick="closeMenu()">Services</a>
-    <a href="#how" onclick="closeMenu()">How it works</a>
-    <a href="#store" onclick="closeMenu()">MoveOps Store</a>
-    <a href="#faq" onclick="closeMenu()">FAQ</a>
-  </div>
-  <div class="nav-right">
-    <a href="mailto:hello@moveops.services" class="btn-nav outline desktop-only">Get quote</a>
-    <a href="mailto:hello@moveops.services" class="btn-nav desktop-only">hello@moveops.services</a>
-    <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <a href="#contact" class="btn btn-dark">Request a quote</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">Spain & Portugal — execution partner</div>
-    <h1 class="hero-h1">Your local crew.<br><span>Ready in 48h.</span></h1>
-    <p class="hero-sub">We execute retail installs, PLV rollouts and stand build support across Spain and Portugal. White-label, under NDA, with photo reporting included.</p>
-    <div class="hero-actions">
-      <a href="mailto:hello@moveops.services?subject=Feasibility check" class="btn-primary">Check feasibility →</a>
-      <a href="#services" class="btn-secondary">See services</a>
-    </div>
-  </div>
-  <div class="hero-right">
-    <div class="hero-grid-pattern"></div>
-    <div class="hero-right-top">
-      <div class="hero-right-label">Typical project checklist</div>
-      <div class="hero-checklist">
-        <div class="hero-check">
-          <div class="check-box done"></div>
-          <div><div class="check-text">Brief received + scope confirmed</div><div class="check-sub">24h reply / feasibility check</div></div>
-        </div>
-        <div class="hero-check">
-          <div class="check-box done"></div>
-          <div><div class="check-text">Crew assigned + logistics aligned</div><div class="check-sub">Delivery addresses, H&S, permits</div></div>
-        </div>
-        <div class="hero-check">
-          <div class="check-box done"></div>
-          <div><div class="check-text">On-site execution</div><div class="check-sub">One owner, clear checklists</div></div>
-        </div>
-        <div class="hero-check">
-          <div class="check-box pending"></div>
-          <div><div class="check-text">Close-out report delivered</div><div class="check-sub">Photos + punch list, 24–48h</div></div>
-        </div>
-      </div>
-    </div>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-val">&lt;24h</div>
-        <div class="hero-stat-label">Reply time</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val">48h</div>
-        <div class="hero-stat-label">Mobilisation</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-val">ES+PT</div>
-        <div class="hero-stat-label">Coverage</div>
-      </div>
-    </div>
-  </div>
-</section>
+<main id="top">
 
-<!-- SERVICES -->
-<section id="services" class="services">
-  <div class="services-header reveal">
-    <div class="section-label">What we do</div>
-    <h2 class="section-h">Three service lines.<br><span>One point of contact.</span></h2>
-  </div>
-  <div class="services-grid">
-    <div class="service-col reveal">
-      <div class="service-num">01</div>
-      <div class="service-icon">🏪</div>
-      <div class="service-title">Retail installs</div>
-      <div class="service-desc">POS displays, vinyls, lightboxes, signage, PLV. Crew + supervision + close-out report. Single-store or multi-city rollout.</div>
-      <div class="service-tags">
-        <span class="tag">PLV / POS</span>
-        <span class="tag">Window vinyls</span>
-        <span class="tag">Lightboxes</span>
-        <span class="tag">Shop fitting</span>
-        <span class="tag">Multi-city</span>
-      </div>
-    </div>
-    <div class="service-col reveal" style="transition-delay:.1s">
-      <div class="service-num">02</div>
-      <div class="service-icon">🏗️</div>
-      <div class="service-title">Stand build support</div>
-      <div class="service-desc">On-site build assistance for exhibition stands. Venue coordination, fix-ups, show close and dismantle. IFEMA, Fira Barcelona and nationwide.</div>
-      <div class="service-tags">
-        <span class="tag">IFEMA Madrid</span>
-        <span class="tag">Fira Barcelona</span>
-        <span class="tag">Build + dismantle</span>
-        <span class="tag">Venue coord.</span>
-      </div>
-    </div>
-    <div class="service-col reveal" style="transition-delay:.2s">
-      <div class="service-num">03</div>
-      <div class="service-icon">📍</div>
-      <div class="service-title">Multi-city rollouts</div>
-      <div class="service-desc">Same brief, same checklist, same report format across every location. One owner manages all cities so you don't have to coordinate locally.</div>
-      <div class="service-tags">
-        <span class="tag">Nationwide</span>
-        <span class="tag">Portugal optional</span>
-        <span class="tag">One owner</span>
-        <span class="tag">Uniform reporting</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section id="how" class="how">
-  <div class="how-header reveal">
-    <div class="section-label">Process</div>
-    <h2 class="section-h">Brief to close-out.<br><span>Three steps.</span></h2>
-  </div>
-  <div class="how-steps">
-    <div class="how-step reveal">
-      <div class="how-step-num">01 — BRIEF</div>
-      <div class="how-step-title">Send us the scope</div>
-      <div class="how-step-desc">We reply within 24h with feasibility and a rough plan. No lengthy intake forms.</div>
-      <div class="how-step-items">
-        <div class="how-item">City / venue + dates</div>
-        <div class="how-item">Scope and assets</div>
-        <div class="how-item">Delivery addresses + onsite contact</div>
-        <div class="how-item">H&S, permits, venue rules</div>
-      </div>
-    </div>
-    <div class="how-step reveal" style="transition-delay:.1s">
-      <div class="how-step-num">02 — DELIVERY</div>
-      <div class="how-step-title">We execute on the ground</div>
-      <div class="how-step-desc">One owner manages the crew and keeps you updated. You don't need to be there.</div>
-      <div class="how-step-items">
-        <div class="how-item">Crew + supervision included</div>
-        <div class="how-item">Checklist aligned with venue rules</div>
-        <div class="how-item">Issues flagged in real time</div>
-        <div class="how-item">White-label under your brand</div>
-      </div>
-    </div>
-    <div class="how-step reveal" style="transition-delay:.2s">
-      <div class="how-step-num">03 — CLOSE-OUT</div>
-      <div class="how-step-title">Report delivered in 24–48h</div>
-      <div class="how-step-desc">Photos, notes and punch list ready for client sign-off. Nothing to chase.</div>
-      <div class="how-step-items">
-        <div class="how-item">Before/after by area or store</div>
-        <div class="how-item">Issues log with resolutions</div>
-        <div class="how-item">Sign-off summary</div>
-        <div class="how-item">NDA — not published anywhere</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- REPORTING -->
-<section class="reporting">
-  <div class="reporting-inner">
-    <div class="reporting-left reveal">
-      <div class="section-label">Deliverable</div>
-      <h2 class="section-h" style="color:#fff">What you get<br><span style="color:rgba(255,255,255,0.25)">after every job.</span></h2>
-      <p class="section-sub" style="color:rgba(255,255,255,0.4);margin-top:20px">No chasing for photos. No ambiguity. A clean report your client can approve without follow-up questions.</p>
-    </div>
-    <div class="reporting-right reveal" style="transition-delay:.15s">
-      <div class="report-items">
-        <div class="report-item">
-          <div class="report-item-icon">📸</div>
-          <div>
-            <div class="report-item-title">Before / after photos</div>
-            <div class="report-item-desc">Wide + detail shots per area, store or stand section. Status confirmed visually.</div>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Installation & site operations — Europe</div>
+          <h1>Your installs, <span class="dim">handled on site.</span></h1>
+          <p class="lead">Surveys, permits, installation and close-out reporting across Europe. One team, one point of contact, working white-label under your brand.</p>
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-dark">Request a quote →</a>
+            <a href="#services" class="btn btn-line">Our services</a>
           </div>
         </div>
-        <div class="report-item">
-          <div class="report-item-icon">⚠️</div>
-          <div>
-            <div class="report-item-title">Issues log</div>
-            <div class="report-item-desc">What happened, what we did about it, what remains open. No surprises for your client.</div>
-          </div>
-        </div>
-        <div class="report-item">
-          <div class="report-item-icon">✅</div>
-          <div>
-            <div class="report-item-title">Sign-off summary</div>
-            <div class="report-item-desc">Simple recap ready for client approval. Speeds up final sign-off and avoids endless photo requests.</div>
-          </div>
-        </div>
-        <div class="report-item">
-          <div class="report-item-icon">🔒</div>
-          <div>
-            <div class="report-item-title">NDA — white-label</div>
-            <div class="report-item-desc">We operate as your local Spain team. Projects are never published or referenced publicly.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+        <div class="illus" aria-hidden="true">
+          <svg viewBox="0 0 440 550" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#0A0A0A" stroke-width="1.5" font-family="'JetBrains Mono', monospace">
+            <defs>
+              <pattern id="grid" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" stroke="#E6E6E6" stroke-width="1"/></pattern>
+              <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V6" stroke="#0A0A0A" stroke-width="1"/></pattern>
+            </defs>
+            <rect width="440" height="550" fill="url(#grid)" stroke="none"/>
 
-<!-- COVERAGE -->
-<section id="coverage" class="coverage">
-  <div class="coverage-inner">
-    <div class="coverage-left reveal">
-      <div class="section-label">Coverage</div>
-      <h2 class="section-h">Spain & Portugal.<br><span>Fully covered.</span></h2>
-      <p class="section-sub">We operate nationwide across Spain and Portugal. One brief, one contact — we handle the rest wherever your project lands.</p>
-      <div class="coverage-tags" style="margin-top:40px">
-        <span class="coverage-tag">Madrid · IFEMA</span>
-        <span class="coverage-tag">Barcelona · Fira</span>
-        <span class="coverage-tag">Sevilla</span>
-        <span class="coverage-tag">Valencia</span>
-        <span class="coverage-tag">Málaga</span>
-        <span class="coverage-tag">Bilbao</span>
-        <span class="coverage-tag">Zaragoza</span>
-        <span class="coverage-tag">Alicante</span>
-        <span class="coverage-tag">Portugal</span>
-        <span class="coverage-tag">+ nationwide</span>
-      </div>
-    </div>
-    <div class="coverage-right reveal" style="transition-delay:.15s">
-      <div class="map-wrap">
-        <div id="iberia-map"></div>
-      </div>
-    </div>
-  </div>
-</section>
+            <!-- site card -->
+            <rect x="20" y="20" width="176" height="62" rx="4" fill="#fff"/>
+            <text x="34" y="44" font-size="10.5" fill="#0A0A0A" stroke="none" letter-spacing=".5">SITE 014 · MADRID</text>
+            <text x="34" y="66" font-size="10" fill="#8E8E8E" stroke="none">SURVEY ✓  PERMIT ✓</text>
 
-<!-- MOVEOPS STORE -->
-<section id="store" class="store-section">
-  <div class="store-inner">
-    <div class="store-left reveal">
-      <div class="store-badge">New product</div>
-      <div class="section-label">MoveOps Store</div>
-      <h2 class="section-h">Track your PLV<br><span>across every store.</span></h2>
-      <p class="section-sub" style="margin-top:16px">A SaaS layer for brand marketing teams. Real-time photo evidence from every store, from the moment materials arrive to final sign-off. No app download for store staff.</p>
-      <div style="margin-top:36px;display:flex;gap:10px;flex-wrap:wrap">
-        <a href="https://store.moveops.services" class="btn-primary" target="_blank">See MoveOps Store →</a>
-        <a href="mailto:hello@moveops.services?subject=MoveOps Store demo" class="btn-secondary">Request demo</a>
-      </div>
-    </div>
-    <div class="store-right reveal" style="transition-delay:.15s">
-      <div class="mock-terminal">
-        <div class="mock-terminal-bar">
-          <div class="mock-dot" style="background:#ff5f57"></div>
-          <div class="mock-dot" style="background:#febc2e"></div>
-          <div class="mock-dot" style="background:#28c840"></div>
-          <span style="font-family:'DM Mono',monospace;font-size:11px;color:rgba(255,255,255,0.2);margin-left:8px">Nike SS26 — Campaign dashboard</span>
-        </div>
-        <div class="mock-terminal-body">
-          <div class="t-row"><span class="t-muted">campaign</span><span class="t-val">Nike SS26 Primavera</span></div>
-          <div class="t-row"><span class="t-muted">status</span><span class="t-green">● LIVE</span></div>
-          <div class="t-row"><span class="t-muted">stores</span><span class="t-val">48 total</span></div>
-          <hr class="t-divider">
-          <div class="t-row"><span class="t-label">✓ El Corte Inglés Sevilla</span><span class="t-green">complete</span></div>
-          <div class="t-row"><span class="t-label">✓ Foot Locker Barcelona</span><span class="t-green">complete</span></div>
-          <div class="t-row"><span class="t-label">⚠ Sprinter Valencia</span><span class="t-amber">alert</span></div>
-          <div class="t-row"><span class="t-label">· Cortefiel Madrid</span><span class="t-muted">pending</span></div>
-          <div class="t-row"><span class="t-label">· Pull&Bear Bilbao</span><span class="t-muted">pending</span></div>
-          <hr class="t-divider">
-          <div class="t-row"><span class="t-muted">progress</span><span class="t-val">34 / 48 stores</span></div>
-          <div class="t-row"><span class="t-muted">open alerts</span><span class="t-amber">1</span></div>
-          <div class="t-row"><span class="t-muted">report</span><span class="t-green">ready to export</span></div>
-        </div>
-      </div>
-      <div class="store-features">
-        <div class="store-feat">
-          <div class="store-feat-icon">📍</div>
-          <div>
-            <div class="store-feat-title">GPS-verified photo evidence</div>
-            <div class="store-feat-desc">Every photo timestamped and geotagged. No more WhatsApp photos.</div>
-          </div>
-        </div>
-        <div class="store-feat">
-          <div class="store-feat-icon">📱</div>
-          <div>
-            <div class="store-feat-title">Zero friction for store staff</div>
-            <div class="store-feat-desc">Link on any phone. No app, no login, no training needed.</div>
-          </div>
-        </div>
-        <div class="store-feat">
-          <div class="store-feat-icon">📄</div>
-          <div>
-            <div class="store-feat-title">One-click execution report</div>
-            <div class="store-feat-desc">Export a full PDF for client sign-off in seconds.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+            <!-- dimension: width -->
+            <path d="M70 146V112M370 146V112" stroke="#8E8E8E" stroke-width="1" stroke-dasharray="3 3"/>
+            <path d="M70 120H370M70 113V127M370 113V127"/>
+            <rect x="192" y="111" width="56" height="18" fill="#fff" stroke="none"/>
+            <text x="220" y="124" font-size="11" text-anchor="middle" fill="#0A0A0A" stroke="none">6.40 m</text>
 
-<!-- FAQ -->
-<section id="faq" class="faq">
-  <div class="faq-header reveal">
-    <div class="section-label">FAQ</div>
-    <h2 class="section-h">Common questions.</h2>
-  </div>
-  <div class="faq-grid">
-    <div class="faq-col">
-      <div class="faq-item reveal">
-        <div class="faq-q">Do you work white-label under NDA?</div>
-        <div class="faq-a">Yes. We operate as your local Spain team. Projects are not published, referenced or disclosed. We sign NDA on request.</div>
+            <!-- dimension: height -->
+            <path d="M374 150H408M374 470H408" stroke="#8E8E8E" stroke-width="1" stroke-dasharray="3 3"/>
+            <path d="M400 150V470M393 150H407M393 470H407"/>
+            <rect x="374" y="301" width="52" height="18" fill="#fff" stroke="none"/>
+            <text x="400" y="314" font-size="11" text-anchor="middle" fill="#0A0A0A" stroke="none">3.80 m</text>
+
+            <!-- facade -->
+            <rect x="70" y="150" width="300" height="320" fill="#fff"/>
+            <rect x="70" y="150" width="300" height="52" fill="#0A0A0A"/>
+            <rect x="150" y="170" width="140" height="12" rx="2" fill="#fff" stroke="none"/>
+
+            <!-- window + vinyl -->
+            <rect x="94" y="226" width="170" height="220" fill="#F4F4F4"/>
+            <rect x="94" y="226" width="170" height="34" fill="url(#hatch)"/>
+            <!-- totem -->
+            <rect x="116" y="300" width="46" height="146" fill="#fff"/>
+            <path d="M126 322H152M126 334H146"/>
+            <!-- lightbox -->
+            <rect x="188" y="286" width="58" height="82" fill="#0A0A0A"/>
+            <path d="M198 304H236M198 316H226" stroke="#fff"/>
+            <rect x="184" y="420" width="66" height="26" fill="#fff"/>
+            <path d="M217 368V420"/>
+
+            <!-- door -->
+            <rect x="284" y="250" width="62" height="220" fill="#fff"/>
+            <path d="M294 352V376"/>
+
+            <!-- ladder -->
+            <path d="M36 470L78 240M62 470L104 240" stroke-width="2"/>
+            <path d="M41 442.4H67M47.3 407.9H73.3M53.6 373.4H79.6M59.9 338.9H85.9M66.2 304.4H92.2M72.5 269.9H98.5"/>
+
+            <!-- ground -->
+            <path d="M20 470H420" stroke-width="2"/>
+
+            <!-- callouts -->
+            <circle cx="179" cy="243" r="11" fill="#0A0A0A"/>
+            <text x="179" y="247" font-size="11" text-anchor="middle" fill="#fff" stroke="none">1</text>
+            <circle cx="246" cy="286" r="11" fill="#fff"/>
+            <text x="246" y="290" font-size="11" text-anchor="middle" fill="#0A0A0A" stroke="none">2</text>
+            <circle cx="320" cy="176" r="11" fill="#fff"/>
+            <text x="320" y="180" font-size="11" text-anchor="middle" fill="#0A0A0A" stroke="none">3</text>
+
+            <!-- legend -->
+            <g font-size="10" fill="#5C5C5C" stroke="none" letter-spacing=".5">
+              <text x="20" y="510">1 WINDOW VINYL</text>
+              <text x="160" y="510">2 LIGHTBOX</text>
+              <text x="270" y="510">3 FASCIA SIGN</text>
+              <text x="20" y="532" fill="#8E8E8E">SCALE 1:50 · REV B</text>
+            </g>
+          </svg>
+        </div>
       </div>
-      <div class="faq-item reveal" style="transition-delay:.05s">
-        <div class="faq-q">What is your minimum notice for mobilisation?</div>
-        <div class="faq-a">48h for standard retail installs. For stand builds we need at least 5 working days depending on scope. We reply within 24h to confirm feasibility.</div>
-      </div>
-      <div class="faq-item reveal" style="transition-delay:.1s">
-        <div class="faq-q">Can you manage print and production?</div>
-        <div class="faq-a">Yes when needed — we coordinate with fabricators and do a pre-check on readiness before install day.</div>
+
+      <div class="facts">
+        <div class="fact"><div class="fact-val">&lt; 24h</div><div class="fact-label">Reply with feasibility</div></div>
+        <div class="fact"><div class="fact-val">48h</div><div class="fact-label">Crew mobilisation</div></div>
+        <div class="fact"><div class="fact-val">1</div><div class="fact-label">Point of contact</div></div>
+        <div class="fact"><div class="fact-val">100%</div><div class="fact-label">Jobs with photo report</div></div>
       </div>
     </div>
-    <div class="faq-col">
-      <div class="faq-item reveal" style="transition-delay:.05s">
-        <div class="faq-q">What exactly is the deliverable?</div>
-        <div class="faq-a">Before/after photos by area or store, an issues log with resolutions, and a sign-off summary. All delivered within 24–48h of close-out.</div>
+  </header>
+
+  <!-- SERVICES -->
+  <section id="services" class="block">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <div>
+          <div class="eyebrow">Services</div>
+          <h2>Everything before, during <span class="dim">and after install day.</span></h2>
+        </div>
+        <p class="lead">We take the operational load off agencies and brands — from the first site visit to the final sign-off.</p>
       </div>
-      <div class="faq-item reveal" style="transition-delay:.1s">
-        <div class="faq-q">Do you cover Portugal?</div>
-        <div class="faq-a">Yes, depending on scope and timing. Include Portugal in your brief and we'll confirm feasibility alongside Spain.</div>
-      </div>
-      <div class="faq-item reveal" style="transition-delay:.15s">
-        <div class="faq-q">How do you quote?</div>
-        <div class="faq-a">Send us the brief — city, scope, dates and asset list. We come back within 24h with a rough budget. No commitment needed to get a number.</div>
+      <div class="services reveal">
+        <div class="svc">
+          <div class="svc-top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="8" width="20" height="8" rx="1"/><path d="M6 8v3M10 8v4M14 8v3M18 8v4"/></svg><span class="svc-num">01</span></div>
+          <h3>Site surveys</h3>
+          <p>Measurements, photos, access and power checks before production starts. Fewer surprises, fewer reprints.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h9l4 4v16H6z"/><path d="M15 2v4h4"/><circle cx="12.5" cy="14" r="3"/><path d="M10.5 19.5h4"/></svg><span class="svc-num">02</span></div>
+          <h3>Permits & approvals</h3>
+          <p>We handle landlord, mall, venue and municipal permits, plus H&S documentation, so the crew can start on time.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l1.5-5h15L21 9"/><path d="M3 9h18"/><path d="M4 9v12h16V9"/><path d="M9 21v-6h6v6"/></svg><span class="svc-num">03</span></div>
+          <h3>Retail installations</h3>
+          <p>POS and PLV displays, window vinyls, lightboxes, signage and shop-fit elements. Single store or full network.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21V4h18v17"/><path d="M3 8h18"/><path d="M8 21v-7h8v7"/><path d="M1 21h22"/></svg><span class="svc-num">04</span></div>
+          <h3>Stand build & dismantle</h3>
+          <p>On-site build support for exhibitions and events: venue coordination, build, fix-ups and dismantle.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12s-4-3.6-4-6.6a4 4 0 0 1 8 0C11 8.4 7 12 7 12z"/><circle cx="7" cy="5.5" r="1.3"/><path d="M17 22s-4-3.6-4-6.6a4 4 0 0 1 8 0c0 3-4 6.6-4 6.6z"/><circle cx="17" cy="15.5" r="1.3"/><path d="M7 15v3h5" stroke-dasharray="2 2"/></svg><span class="svc-num">05</span></div>
+          <h3>Multi-site rollouts</h3>
+          <p>Same brief, same checklist and same report format across every city and country. One owner runs it all.</p>
+        </div>
+        <div class="svc">
+          <div class="svc-top"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M8 7l2-3h4l2 3"/><circle cx="12" cy="14" r="4"/></svg><span class="svc-num">06</span></div>
+          <h3>Close-out reporting</h3>
+          <p>Before/after photos, issues log and sign-off summary, delivered within 24–48h of completion.</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CTA FINAL -->
-<section class="cta-final">
-  <div class="reveal">
-    <h2 class="cta-final-h">Have a project<br><span>in Spain?</span></h2>
-  </div>
-  <div class="cta-final-right reveal" style="transition-delay:.1s">
-    <p class="cta-final-sub">Send us the brief — city, scope and dates. We reply within 24h with feasibility and a rough budget. No commitment needed.</p>
-    <a href="mailto:hello@moveops.services?subject=Project brief" class="btn-white">Send brief → <span style="opacity:.4">hello@moveops.services</span></a>
-    <a href="tel:+34" class="btn-ghost">Or call us directly ↗</a>
-  </div>
-</section>
+  <!-- PROCESS -->
+  <section id="process" class="block">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <div>
+          <div class="eyebrow">Process</div>
+          <h2>Four steps. <span class="dim">No loose ends.</span></h2>
+        </div>
+        <p class="lead">Send us the brief and we take it from there. You get clear updates, not more calls to make.</p>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <div class="step-top"><span class="step-num">01</span><span class="step-time">24h</span></div>
+          <h3>Brief & survey</h3>
+          <p>We confirm feasibility and visit or survey each site to lock down measurements and access.</p>
+        </div>
+        <div class="step">
+          <div class="step-top"><span class="step-num">02</span><span class="step-time">Pre-install</span></div>
+          <h3>Permits & planning</h3>
+          <p>Permits requested, crews assigned, deliveries and schedules aligned with every location.</p>
+        </div>
+        <div class="step">
+          <div class="step-top"><span class="step-num">03</span><span class="step-time">Install day</span></div>
+          <h3>Execution</h3>
+          <p>Supervised crews on site. Issues flagged and solved in real time. You don't need to be there.</p>
+        </div>
+        <div class="step">
+          <div class="step-top"><span class="step-num">04</span><span class="step-time">24–48h</span></div>
+          <h3>Report & sign-off</h3>
+          <p>Photo report, issues log and summary — ready to forward to your client for approval.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<!-- FOOTER -->
+  <!-- COVERAGE -->
+  <section id="coverage" class="block">
+    <div class="wrap cov">
+      <div class="reveal">
+        <div class="eyebrow">Coverage</div>
+        <h2>Across Europe. <span class="dim">One standard everywhere.</span></h2>
+        <p class="lead" style="margin-top:24px">Wherever your project lands, the brief, the checklist and the report stay the same. You deal with one team, not a different supplier in every country.</p>
+        <div class="map" id="europe-map" aria-label="Map of countries covered in Europe" role="img"></div>
+      </div>
+      <div class="reveal">
+        <ul class="cov-list">
+          <li>Spain <span>Madrid · Barcelona · nationwide</span></li>
+          <li>Portugal <span>Lisbon · Porto</span></li>
+          <li>France <span>Paris · Lyon</span></li>
+          <li>Italy <span>Milan · Rome</span></li>
+          <li>Germany <span>Berlin · Munich</span></li>
+          <li>Benelux <span>Amsterdam · Brussels</span></li>
+          <li>United Kingdom <span>London</span></li>
+          <li>Rest of Europe <span>On request</span></li>
+        </ul>
+        <p class="cov-note"><strong>Also in South America.</strong> We support selected projects in South America — tell us the country in your brief.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STANDARDS -->
+  <section class="block dark">
+    <div class="wrap">
+      <div class="block-head reveal">
+        <div>
+          <div class="eyebrow">How we work</div>
+          <h2>Simple to brief. <span class="dim">Reliable on site.</span></h2>
+        </div>
+      </div>
+      <div class="std reveal">
+        <div class="std-item">
+          <h3>One owner per project</h3>
+          <p>A single project lead manages every site and every crew, and is your only contact.</p>
+        </div>
+        <div class="std-item">
+          <h3>White-label & NDA</h3>
+          <p>We work under your brand. Projects are never published or referenced.</p>
+        </div>
+        <div class="std-item">
+          <h3>Supervised crews</h3>
+          <p>Experienced installers with on-site supervision and checklists aligned to each venue's rules.</p>
+        </div>
+        <div class="std-item">
+          <h3>Proof of every job</h3>
+          <p>Photo evidence and a written summary for every location, so sign-off is fast.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="block">
+    <div class="wrap faq-grid">
+      <div class="reveal">
+        <div class="eyebrow">FAQ</div>
+        <h2>Common <span class="dim">questions.</span></h2>
+      </div>
+      <div class="faq-list reveal">
+        <details>
+          <summary>Which countries do you cover?</summary>
+          <p>We work across Europe, with a strong base in Spain and Portugal, and support selected projects in South America. Tell us the locations in your brief and we confirm feasibility within 24h.</p>
+        </details>
+        <details>
+          <summary>Can you handle surveys and permits before the install?</summary>
+          <p>Yes. We can survey each site (measurements, photos, access, power) and manage landlord, mall, venue or municipal permits, plus H&S paperwork, so install day goes to plan.</p>
+        </details>
+        <details>
+          <summary>How much notice do you need?</summary>
+          <p>48h for standard retail installs once permits are in place. Stand builds and multi-country rollouts usually need at least 5 working days, depending on scope.</p>
+        </details>
+        <details>
+          <summary>Do you work white-label under NDA?</summary>
+          <p>Yes. We operate as your local team, under your brand. We sign an NDA on request and never publish or reference client projects.</p>
+        </details>
+        <details>
+          <summary>What do we receive after the job?</summary>
+          <p>Before/after photos by area or store, an issues log with resolutions, and a sign-off summary — delivered within 24–48h of close-out.</p>
+        </details>
+        <details>
+          <summary>How do you quote?</summary>
+          <p>Send us the locations, scope, dates and asset list. We reply within 24h with feasibility and a budget. No commitment needed.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="block">
+    <div class="wrap contact">
+      <div class="contact-side reveal">
+        <div class="eyebrow">Contact</div>
+        <h2>Tell us about <span class="dim">your project.</span></h2>
+        <p class="lead">Locations, scope and dates are enough to start. We reply within 24h with feasibility and a budget.</p>
+      </div>
+
+      <div class="reveal">
+      <a class="email-cta" href="mailto:hello@moveops.services">
+        <span class="email-cta-label">Email us directly</span>
+        <span class="email-cta-addr">hello@moveops.services <span aria-hidden="true">→</span></span>
+      </a>
+      <div class="or-line"><span>or send the form</span></div>
+
+      <form id="quote-form" novalidate>
+        <div class="field">
+          <label for="f-name">Name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="f-company">Company</label>
+          <input id="f-company" name="company" type="text" autocomplete="organization" required>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div class="field">
+          <label for="f-phone">Phone <span class="opt">(optional)</span></label>
+          <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+        </div>
+        <div class="field">
+          <label for="f-service">Service</label>
+          <select id="f-service" name="service" required>
+            <option value="" disabled selected>Select…</option>
+            <option>Site survey</option>
+            <option>Permits & approvals</option>
+            <option>Retail installation</option>
+            <option>Stand build & dismantle</option>
+            <option>Multi-site rollout</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-where">Location(s)</label>
+          <input id="f-where" name="locations" type="text" placeholder="e.g. Madrid, Paris, Milan" required>
+        </div>
+        <div class="field full">
+          <label for="f-dates">Dates <span class="opt">(optional)</span></label>
+          <input id="f-dates" name="dates" type="text" placeholder="e.g. week of 12 January">
+        </div>
+        <div class="field full">
+          <label for="f-msg">Project details</label>
+          <textarea id="f-msg" name="message" placeholder="Scope, number of sites, assets, anything we should know." required></textarea>
+        </div>
+        <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="form-msg" id="form-msg" role="status" aria-live="polite"></div>
+        <div class="form-foot">
+          <small>We only use your details to reply to this request.</small>
+          <button type="submit" class="btn btn-dark" id="form-btn">Send request →</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
 <footer>
-  <div class="footer-left">
-    <img src="logo-mark.png" alt="MoveOps" style="width:28px;height:28px;object-fit:contain;border-radius:3px">
-    <span class="footer-name">MOVEOPS — SPAIN & PORTUGAL</span>
+  <div class="wrap">
+    <div class="foot">
+      <img src="logo-wordmark.png" alt="MoveOps Services">
+      <div class="foot-links">
+        <a href="#services">Services</a>
+        <a href="#process">Process</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#contact">Contact</a>
+        <a href="mailto:hello@moveops.services">hello@moveops.services</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© <span id="year">2026</span> MoveOps Services</span>
+      <span>Installation & site operations — Europe</span>
+    </div>
   </div>
-  <div class="footer-links">
-    <a href="#services">Services</a>
-    <a href="#how">Process</a>
-    <a href="#store">MoveOps Store</a>
-    <a href="mailto:hello@moveops.services">hello@moveops.services</a>
-  </div>
-  <div class="footer-copy">© 2026</div>
 </footer>
 
 <script>
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').classList.toggle('scrolled', scrollY > 20);
-  document.querySelectorAll('.reveal').forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight * 0.88) el.classList.add('visible');
+  // nav border + mobile menu
+  const nav = document.getElementById('nav');
+  const burger = document.getElementById('burger');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 10), { passive: true });
+  function setMenu(open) {
+    nav.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  burger.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
+  document.querySelectorAll('#mobile-menu a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+  // reveal on scroll
+  const io = new IntersectionObserver(entries => entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // quote form → FormSubmit (emails hello@moveops.services)
+  const form = document.getElementById('quote-form');
+  const msg = document.getElementById('form-msg');
+  const btn = document.getElementById('form-btn');
+  function show(type, text) { msg.className = 'form-msg ' + type; msg.textContent = text; }
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.querySelectorAll(':invalid')[0]?.focus();
+      show('err', 'Please fill in the required fields with a valid email.');
+      return;
+    }
+    const data = Object.fromEntries(new FormData(form));
+    if (data._honey) return;
+    data._subject = 'New quote request — ' + data.company;
+    data._template = 'table';
+    data._captcha = 'false';
+    data._replyto = data.email;
+
+    btn.disabled = true; btn.textContent = 'Sending…';
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/hello@moveops.services', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok || String(out.success) !== 'true') throw new Error(out.message || 'Request failed');
+      form.reset();
+      show('ok', 'Thanks — your request has been sent. We’ll reply within 24h.');
+    } catch (err) {
+      show('err', 'Something went wrong sending the form. Please email us at hello@moveops.services.');
+      console.error(err);
+    } finally {
+      btn.disabled = false; btn.textContent = 'Send request →';
+    }
   });
-});
-setTimeout(() => document.querySelectorAll('.reveal').forEach(el => {
-  if (el.getBoundingClientRect().top < window.innerHeight * 0.88) el.classList.add('visible');
-}), 100);
 </script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"></script>
 <script>
-// Render Iberia map using D3 + Natural Earth data
-(async function() {
-  const container = document.getElementById('iberia-map');
-  const W = container.offsetWidth || 420;
-  const H = Math.round(W * 0.88);
-
-  const svg = d3.select('#iberia-map')
-    .append('svg')
-    .attr('viewBox', `0 0 ${W} ${H}`)
-    .attr('width', '100%')
-    .style('display', 'block');
-
-  // Fetch world topojson from CDN
-  let world;
-  try {
-    world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json');
-  } catch(e) {
-    // fallback: show text
-    svg.append('text').attr('x', W/2).attr('y', H/2)
-      .attr('text-anchor','middle').attr('font-family','DM Mono')
-      .attr('font-size', 11).attr('fill','#999').text('Map unavailable offline');
-    return;
-  }
-
-  const countries = topojson.feature(world, world.objects.countries);
-
-  // Spain = 724, Portugal = 620
-  const iberia = {
-    type: 'FeatureCollection',
-    features: countries.features.filter(d => ['724','620'].includes(d.id + ''))
-  };
-
-  const projection = d3.geoMercator().fitExtent([[20,20],[W-20,H-20]], iberia);
-  const path = d3.geoPath().projection(projection);
-
-  // Draw countries
-  svg.selectAll('path.country')
-    .data(iberia.features)
-    .join('path')
-    .attr('class', 'country')
-    .attr('d', path)
-    .attr('fill', 'rgba(0,0,0,0.05)')
-    .attr('stroke', '#0A0A0A')
-    .attr('stroke-width', 1.5)
-    .attr('stroke-linejoin', 'round');
-
-  // City data [name, lon, lat, primary]
-  const cities = [
-    ['MADRID',   -3.70,  40.42, true ],
-    ['BCN',       2.17,  41.38, true ],
-    ['SVQ',      -5.99,  37.39, true ],
-    ['VLC',      -0.38,  39.47, false],
-    ['BIO',      -2.93,  43.26, false],
-    ['AGP',      -4.42,  36.72, false],
-    ['ZGZ',      -0.89,  41.65, false],
-    ['LIS',      -9.14,  38.72, false],
-  ];
-
-  cities.forEach(([name, lon, lat, primary]) => {
-    const [x, y] = projection([lon, lat]);
-    const g = svg.append('g');
-
-    // Pulse ring for primary cities
-    if (primary) {
-      g.append('circle')
-        .attr('cx', x).attr('cy', y)
-        .attr('r', 10)
-        .attr('fill', 'rgba(0,0,0,0.06)')
-        .attr('stroke', 'none');
+  // Europe coverage map — covered countries in black
+  (async function () {
+    const el = document.getElementById('europe-map');
+    try {
+      const world = await d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json');
+      const countries = topojson.feature(world, world.objects.countries).features;
+      const covered = new Set(['724', '620', '250', '380', '276', '528', '056', '442', '826']);
+      const W = 600, H = 440;
+      const projection = d3.geoConicConformal().rotate([-8, 0]).parallels([40, 56])
+        .fitExtent([[0, 0], [W, H]], { type: 'MultiPoint', coordinates: [[-11, 35.5], [24, 35.5], [-8, 59], [24, 59]] });
+      const path = d3.geoPath(projection);
+      const svg = d3.select(el).append('svg').attr('viewBox', `0 0 ${W} ${H}`);
+      svg.append('g').selectAll('path').data(countries).join('path')
+        .attr('d', path)
+        .attr('fill', d => covered.has(String(d.id)) ? '#0A0A0A' : '#EDEDED')
+        .attr('stroke', '#fff').attr('stroke-width', 0.8).attr('stroke-linejoin', 'round');
+      const cities = [['Madrid', -3.70, 40.42], ['Lisbon', -9.14, 38.72], ['Paris', 2.35, 48.86], ['Milan', 9.19, 45.46],
+                      ['Berlin', 13.40, 52.52], ['London', -0.13, 51.51], ['Amsterdam', 4.90, 52.37]];
+      svg.append('g').selectAll('circle').data(cities).join('circle')
+        .attr('cx', d => projection([d[1], d[2]])[0]).attr('cy', d => projection([d[1], d[2]])[1])
+        .attr('r', 3.5).attr('fill', '#fff');
+    } catch (e) {
+      el.remove();
     }
-
-    g.append('circle')
-      .attr('cx', x).attr('cy', y)
-      .attr('r', primary ? 5 : 3.5)
-      .attr('fill', '#0A0A0A')
-      .attr('opacity', primary ? 1 : 0.55);
-
-    g.append('text')
-      .attr('x', x)
-      .attr('y', y - (primary ? 10 : 8))
-      .attr('text-anchor', 'middle')
-      .attr('font-family', 'DM Mono, monospace')
-      .attr('font-size', primary ? 9 : 7.5)
-      .attr('font-weight', primary ? '500' : '400')
-      .attr('fill', primary ? '#0A0A0A' : '#888880')
-      .attr('letter-spacing', '1')
-      .text(name);
-  });
-
-  // Canary Islands inset note
-  svg.append('rect')
-    .attr('x', 12).attr('y', H - 34)
-    .attr('width', 72).attr('height', 22)
-    .attr('rx', 3)
-    .attr('fill', 'none')
-    .attr('stroke', '#DDDDD8')
-    .attr('stroke-width', 1)
-    .attr('stroke-dasharray', '3,2');
-
-  svg.append('text')
-    .attr('x', 48).attr('y', H - 19)
-    .attr('text-anchor', 'middle')
-    .attr('font-family', 'DM Mono, monospace')
-    .attr('font-size', 7).attr('fill', '#999993')
-    .attr('letter-spacing', '1')
-    .text('+ CANARIAS');
-
-})();
+  })();
 </script>
-
-<script>
-// Mobile menu — fully self-contained, no CSS variable dependencies
-function toggleMenu() {
-  const b = document.getElementById('burger');
-  const overlay = document.getElementById('mobile-overlay');
-  const isOpen = overlay.style.display === 'flex';
-  if (isOpen) {
-    closeMenu();
-  } else {
-    b.classList.add('open');
-    overlay.style.display = 'flex';
-    document.body.style.overflow = 'hidden';
-  }
-}
-function closeMenu() {
-  document.getElementById('burger').classList.remove('open');
-  document.getElementById('mobile-overlay').style.display = 'none';
-  document.body.style.overflow = '';
-}
-</script>
-
-<div id="mobile-overlay" style="
-  display: none;
-  position: fixed;
-  top: 60px; left: 0; right: 0; bottom: 0;
-  background-color: #ffffff;
-  z-index: 9999;
-  flex-direction: column;
-  align-items: stretch;
-  border-top: 2px solid #0A0A0A;
-  overflow-y: auto;
-">
-  <a href="#services" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#0A0A0A;text-decoration:none;border-bottom:1px solid #EEEEEA;background:#ffffff;">Services</a>
-  <a href="#how" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#0A0A0A;text-decoration:none;border-bottom:1px solid #EEEEEA;background:#ffffff;">How it works</a>
-  <a href="#store" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#0A0A0A;text-decoration:none;border-bottom:1px solid #EEEEEA;background:#ffffff;">MoveOps Store</a>
-  <a href="#faq" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:#0A0A0A;text-decoration:none;border-bottom:1px solid #EEEEEA;background:#ffffff;">FAQ</a>
-  <a href="mailto:hello@moveops.services" onclick="closeMenu()" style="display:block;padding:22px 28px;font-family:'Syne',sans-serif;font-size:16px;font-weight:600;color:#ffffff;text-decoration:none;background:#0A0A0A;margin:24px 20px;border-radius:6px;text-align:center;">hello@moveops.services →</a>
-</div>
-
 </body>
 </html>
